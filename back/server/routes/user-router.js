@@ -1,10 +1,16 @@
 const router = require("express").Router();
 const User = require('../../db/models').User;
-
+const Message = require('../../db/models').Message;
+const Chatroom = require('../../db/models').Chatroom;
+const Team = require('../../db/models').Team;
 
 //FUNCTIONS//
 const getAllUsers = (req,res) => (
-	User.findAll()
+	User.findAll({
+		include: [
+		{model: Message}, {model: Team}, {model: Chatroom}
+		]
+	})
 )
 .then((usersInfo)=>
 	res.send(usersInfo)
@@ -12,7 +18,10 @@ const getAllUsers = (req,res) => (
 
 const getOneUser = (req,res) => (
 	User.findOne({
-		where: {id: req.params.UserId}
+		where: {id: req.params.UserId},
+		include: [
+		{model: Message}, {model: Team}, {model: Chatroom}
+		]
 	})
 )
 .then((userInfo)=>
