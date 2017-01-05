@@ -38,6 +38,11 @@ describe('User tests', () => {
 });
 
 describe('new User test', () => {
-  var user = {username: "test1", password: 'pass'};
+  var user2 = {username: "test1", password: 'pass'};
+  before(()=>{
+    return User.sync()
+    .then(()=> User.Create(user2))
+    .catch((err)=> console(err.errors[0].message))
+  })
 
 })
