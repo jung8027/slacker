@@ -3,13 +3,12 @@
 //profile?
 
 import React from 'react';
-import $ from 'jQuery';
 
 const User = React.createClass({ 
   render() {
     return (
       <div>
-        
+        {}
       </div>
     )
   }
