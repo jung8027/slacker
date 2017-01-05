@@ -3,7 +3,6 @@ const supertest = require('supertest');
 const server = require('../back/server');
 const User = require('../back/db/models').User;
 const Message = require('../back/db/models').Message;
-const seedData = require('./test-data')
 
 describe('Message tests', () => {
   it(`message test, should pass`, () => {
