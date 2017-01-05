@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require('../../db').User;
+const User = require('../../db/models').User;
 
 
 //FUNCTIONS//
@@ -20,7 +20,7 @@ const getOneUser = (req,res) => (
 )
 
 const createUser = (req,res) => {
-	let body = req.body;
+	var body = req.body;
 	User.create({
 		username: body.username,
 		password: body.password
