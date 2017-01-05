@@ -24,11 +24,11 @@ describe('User tests', () => {
   });
 
   //example of how to do a test to get all users route
-  it(`'/users' should respond with all users`, (done) => {
+  it(`'/api/user' should respond with all users`, (done) => {
     supertest(server)
-      .get('/users')
+      .get('/api/user')
       .end((err, res) => {
-        expect(res.body.length).equal(3);
+        expect(res.body.length).eql(3);
         expect(res.body[0].username).equal(users[0].username);
         expect(res.body[1].username).equal(users[1].username);
         expect(res.body[2].username).equal(users[2].username);
@@ -38,6 +38,6 @@ describe('User tests', () => {
 });
 
 describe('new User test', () => {
-  var user = {username: test1, password: 'pass'};
-  
+  var user = {username: "test1", password: 'pass'};
+
 })

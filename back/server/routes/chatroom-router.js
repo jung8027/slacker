@@ -1,7 +1,5 @@
 const router = require("express").Router();
-
 const Chatroom = require('../../db/models').Chatroom;
-
 
 //new chat room
 const createChat = (req,res) => {
