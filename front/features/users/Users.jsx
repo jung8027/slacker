@@ -1,33 +1,22 @@
+
 //Vanessa
 //all users(usernames) will be called from the database and displayed in a list
+//convert this to redux
 
-import React from 'react';
-import $ from 'jQuery';
-import {User} from '../user/User.jsx';
+import React from 'react'
+import User from './User'
 
-const Users = React.createClass({
-	componentDidMount() {
-    $.ajax({
-      method: 'GET',
-      url: '/users'
-    })
-    .done((users) => {
-      if(users > 0) {
-        console.log(users + 'displaying users');
-        this.setState({users: users});
-      } else {
-        console.log('there are no users');
+const Users = (props) => {
+  console.log(props)
+  return (
+    <div>
+      {
+        props.users ? props.users.map((user, index) =>(
+          <User key={index} user={user} />
+        )): null
       }
-    })
-   }
-  , 
-  render() {
-    return (
-      <div>
-        <User users={this.state} />
-      </div>
-    )
-  }
-});
+    </div>
+  )
+}
 
-export default Users;
+export default Users
