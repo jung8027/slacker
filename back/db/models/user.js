@@ -22,8 +22,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        User.hasMany(models.Team)
-        User.hasMany(models.Chatroom)
+        User.belongsTo(models.Team)
+        User.belongsTo(models.Chatroom)
         User.hasMany(models.Message)
       }
     }
