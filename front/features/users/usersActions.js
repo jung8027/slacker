@@ -14,7 +14,7 @@ export const getUsersAysnc = () => (dispatch) =>{
   return $.ajax({
     url: '/users',
     dataType: 'json',
-    type: 'get'
+    type: 'GET'
   })
   .done(users => {
     dispatch(getAllUsers(users));
