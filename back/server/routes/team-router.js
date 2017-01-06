@@ -28,18 +28,18 @@ const getSingleTeam = (req,res) => (
 );
 
 
-// const killTeam = (req,res)=> (
-// 	Team.destroy({
-// 		where: {id: req.params.teamId}
-// // 		include: [{
-// // 			model: User,
-// // //			as: tbd,
-// // 			where: {}
-// // 		}]
-// 	})
-// 	.then((chat)=>
-// 		res.send('Team '+chatId+' deleted!'))
-// );
+const killTeam = (req,res)=> (
+	Team.destroy({
+		where: {id: req.params.teamId}
+// 		include: [{
+// 			model: User,
+// //			as: tbd,
+// 			where: {}
+// 		}]
+	})
+	.then((chat)=>
+		res.send('Team '+chatId+' deleted!'))
+);
 
 router.route('/')
 	.post(createTeam)
