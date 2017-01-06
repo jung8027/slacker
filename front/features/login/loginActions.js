@@ -16,6 +16,6 @@ export const getUserAysnc = () => (dispatch) =>{
     type: 'POST'
   })
   .done(user => {
-    dispatch(getUser(user));
+    dispatch(getOneUser(user));
   })
 }

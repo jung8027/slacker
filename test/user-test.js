@@ -19,7 +19,7 @@ describe('User tests', () => {
     .catch((err) => console.log('DB Err!', err));
   });
 
-  it(`demo test, should pass`, () => {
+  it(`get request test, should pass`, () => {
     expect(3).equal(3);
   });
 
@@ -37,12 +37,24 @@ describe('User tests', () => {
   });
 });
 
-describe('new User test', () => {
+describe('new User with duplicate username. should fail', () => {
   var user2 = {username: "test1", password: 'pass'};
   before(()=>{
     return User.sync()
     .then(()=> User.Create(user2))
-    .catch((err)=> console(err.errors[0].message))
-  })
+    .catch((err)=> console.log('ERROR MESSAGE', err))
+  });
+
+  it(`'/api/user' should respond with all users but fail at 4th user`, (done) => {
+    supertest(server)
+      .get('/api/user')
+      .end((err, res) => {
+        expect(res.body[0].username).equal(users[0].username);
+        expect(res.body[1].username).equal(users[1].username);
+        expect(res.body[2].username).equal(users[2].username);
+        expect(res.body[3].username).equal(users[4].username);
+        done();
+      })
+  });
 
 })

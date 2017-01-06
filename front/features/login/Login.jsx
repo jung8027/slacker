@@ -8,7 +8,7 @@ const Login = React.createClass({
   submitLoginInfo() {
     $.ajax({
       method: 'POST',
-      url: '/login',
+      url: '/api/login',
       data: this.state
     })
     .done((data) => {
@@ -31,7 +31,7 @@ const Login = React.createClass({
   }
 });
 
-
+// Redux version
 // const Login = props => {
 //   const {input, inputAction} = props;
 //   const handleChange = (event) => {
