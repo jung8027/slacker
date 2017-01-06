@@ -15,19 +15,16 @@ const Login = React.createClass({
       console.log('received user data', data);
     })
   },
-  updateUserName(event) {
-    this.setState({username: event.target.value});
-  },
-  updatePassword(event) {
-    this.setState({password: event.target.value});
+  handleChange(eventType, event) {
+    this.setState({[eventType]: event.target.value});
   },
   render() {
     return (
       <div>
         Username:
-        <input onChange={this.updateUserName} type="text"/>
+        <input onChange={this.handleChange.bind(this, 'username')} type="text"/>
         Password:
-        <input onChange={this.updatePassword} type="text"/>
+        <input onChange={this.handleChange.bind(this, 'password')} type="text"/>
         <button onClick={this.submitLoginInfo}>Submit</button>
       </div>
     )
@@ -35,28 +32,25 @@ const Login = React.createClass({
 });
 
 
-
-// import React from 'react';
-// import {socket} from '../../socket';
-
-// const ChatBar = props => {
+// const Login = props => {
 //   const {input, inputAction} = props;
 //   const handleChange = (event) => {
 //     inputAction(event.target.value)
 //   };
 
-//   const sendMessage = () => {
-//     socket.emit('message', input)
+//   const submitLoginInfo = () => {
+//    filler ajax - need to send to a login route api
+//     $.ajax({  })
 //   };
 
 //   return (
-//     <div className="chat_bar">
-//       <input 
-//         type='text'
-//         onChange={handleChange}
-//       />
-//       <button onClick={sendMessage}>Send</button>
-//     </div>
+//      <div>
+//        Username:
+//        <input onChange={handleChange.bind()} type="text"/>
+//        Password:
+//        <input onChange={handleChange} type="text"/>
+//        <button onClick={submitLoginInfo}>Submit</button>
+//      </div>
 //   )
 
 // }
