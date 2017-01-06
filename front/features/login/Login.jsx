@@ -1,19 +1,34 @@
 import React from 'react';
-import $ from 'jQuery';
+import $ from 'jquery';
+import auth from '../../routes/auth'
 
 const Login = React.createClass({
   getInitialState() {
     return {username: '', password: ''};
   },
-  submitLoginInfo() {
-    $.ajax({
-      method: 'POST',
-      url: '/api/login',
-      data: this.state
+  submitLoginInfo() {  
+    event.preventDefault()
+
+    auth.login(this.state.username, this.state.password, (loggedIn) => {
+      if (!loggedIn)
+        return this.setState({ error: true })
+
+      const { location } = this.props
+
+      if (location.state && location.state.nextPathname) {
+        this.props.router.replace(location.state.nextPathname)
+      } else {
+        this.props.router.replace('/')
+      }
     })
-    .done((data) => {
-      console.log('received user data', data);
-    })
+    // $.ajax({
+    //   method: 'POST',
+    //   url: '/api/login',
+    //   data: this.state
+    // })
+    // .done((data) => {
+    //   console.log('received user data', data);
+    // })
   },
   handleChange(eventType, event) {
     this.setState({[eventType]: event.target.value});

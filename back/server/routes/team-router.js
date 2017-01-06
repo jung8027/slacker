@@ -4,10 +4,10 @@ const Team = require('../../db/models').Team;
 //new chat room
 const createTeam = (req,res) => {
 	Team.create({
-		name: req.body.team
+		name: req.body.name
 	})
 	.then(()=>
-		res.send('Team ' + req.body.team + ' created!'))
+		res.send('Team ' + req.body.name + ' created!'))
 };
 
 //displays all chats on sidebar of active Chatrooms to user
@@ -21,7 +21,7 @@ const getAllTeams = (req,res) => (
 //used for when user enters a room already created to join convo
 const getSingleTeam = (req,res) => (
 	Team.findOne({
-		where: {id: req.params.teamId}
+		where: {name: req.params.name}
 	})
 	.then((chat)=>
 		res.send(chat))
@@ -30,7 +30,7 @@ const getSingleTeam = (req,res) => (
 
 const killTeam = (req,res)=> (
 	Team.destroy({
-		where: {id: req.params.teamId}
+		where: {name: req.params.name}
 // 		include: [{
 // 			model: User,
 // //			as: tbd,
@@ -45,7 +45,7 @@ router.route('/')
 	.post(createTeam)
 	.get(getAllTeams)
 
-router.route('/:teamId')
+router.route('/:name')
 	.get(getSingleTeam)
 	.delete(killTeam)
 
