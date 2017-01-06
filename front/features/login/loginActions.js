@@ -1,27 +1,21 @@
 import $ from 'jquery'
-import {GET_ALL_SONGS, SHOW_VIDEO} from './types'
 
-export const postLogin = (songs) => (
+const USER_LOGIN = 'user_login';
+
+export const getOneUser = (user) => (
   {
-    type: GET_ALL_SONG,
-    songs
+    type: USER_LOGIN,
+    user
   }
 )
 
-export const getSongsAysnc = () => (dispatch) =>{
+export const getUserAysnc = () => (dispatch) =>{
   return $.ajax({
-    url: '/api/songs',
+    url: '/api/login',
     dataType: 'json',
-    type: 'get'
+    type: 'POST'
   })
-  .done(songs => {
-    dispatch(getAllSongs(songs));
+  .done(user => {
+    dispatch(getUser(user));
   })
 }
-
-export const showVideo = (isVideo) => (
-  {
-    type: SHOW_VIDEO,
-    isVideo
-  }
-)
