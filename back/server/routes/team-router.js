@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Team = require('../../db/models');
+const Team = require('../../db/models').Team;
 
 //new chat room
 const createTeam = (req,res) => {
@@ -28,26 +28,24 @@ const getSingleTeam = (req,res) => (
 );
 
 
-//figure out function to what happens when user leaves room, if user is last person in room then the room closes. 
-
-const killTeam = (req,res)=> (
-	Team.destroy({
-		where: {id: req.params.teamId}
-// 		include: [{
-// 			model: User,
-// //			as: tbd,
-// 			where: {}
-// 		}]
-	})
-	.then((chat)=>
-		res.send('Team '+chatId+' deleted!'))
-);
+// const killTeam = (req,res)=> (
+// 	Team.destroy({
+// 		where: {id: req.params.teamId}
+// // 		include: [{
+// // 			model: User,
+// // //			as: tbd,
+// // 			where: {}
+// // 		}]
+// 	})
+// 	.then((chat)=>
+// 		res.send('Team '+chatId+' deleted!'))
+// );
 
 router.route('/')
 	.post(createTeam)
 	.get(getAllTeams)
 
-router.route('/:teamid')
+router.route('/:teamId')
 	.get(getSingleTeam)
 	.delete(killTeam)
 
