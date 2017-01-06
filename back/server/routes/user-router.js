@@ -8,7 +8,7 @@ const Team = require('../../db/models').Team;
 const getAllUsers = (req,res) => (
 	User.findAll({
 		include: [
-		{model: Message}, {model: Team}, {model: Chatroom}
+		{model: Message}, {model: Team, include: [{ model: Chatroom }]}
 		]
 	})
 )
@@ -20,7 +20,7 @@ const getOneUser = (req,res) => (
 	User.findOne({
 		where: {id: req.params.UserId},
 		include: [
-		{model: Message}, {model: Team}, {model: Chatroom}
+		{model: Message}, {model: Team, include: [ {model: Chatroom} ]}, {model: Chatroom}
 		]
 	})
 )
@@ -53,7 +53,7 @@ const deleteUser = (req,res)=> (
 		where: {id: req.params.UserId}
 	})
 )
-.then((userInfo)=>res.send(PostId+' deleted!'))
+.then((userInfo)=>res.send(userInfo+' deleted!'))
 
 //ROUTES//
 router.route('/')
