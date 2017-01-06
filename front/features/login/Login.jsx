@@ -24,7 +24,7 @@ const Login = React.createClass({
         Username:
         <input onChange={this.handleChange.bind(this, 'username')} type="text"/>
         Password:
-        <input onChange={this.handleChange.bind(this, 'password')} type="text"/>
+        <input onChange={this.handleChange.bind(this, 'password')} type="password"/>
         <button onClick={this.submitLoginInfo}>Submit</button>
       </div>
     )
