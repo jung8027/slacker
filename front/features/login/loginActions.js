@@ -1,19 +1,19 @@
-  import $ from 'jquery'
+import $ from 'jquery'
 
-const GET_USER = 'get_user';
+const USER_LOGIN = 'user_login';
 
 export const getOneUser = (user) => (
   {
-    type: GET_USER,
+    type: USER_LOGIN,
     user
   }
 )
 
 export const getUserAysnc = () => (dispatch) =>{
   return $.ajax({
-    url: '/users/:id',
+    url: '/api/login',
     dataType: 'json',
-    type: 'GET'
+    type: 'POST'
   })
   .done(user => {
     dispatch(getUser(user));
