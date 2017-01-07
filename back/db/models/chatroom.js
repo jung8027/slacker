@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Chatroom = sequelize.define('Chatroom', {
-    name: DataTypes.STRING
+    name: DataTypes.STRING, unique: true
   }, {
     classMethods: {
       associate: function(models) {

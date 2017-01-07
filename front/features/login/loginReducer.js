@@ -1,7 +1,7 @@
 import {GET_USER} from './loginActions';
 
 const INTIAL_STATE = {
-  input: "",
+  username: "",
 };
 
 export default function(state = INTIAL_STATE, action) {

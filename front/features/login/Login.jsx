@@ -46,7 +46,7 @@ const Login = React.createClass({
   }
 });
 
-
+// Redux version
 // const Login = props => {
 //   const {input, inputAction} = props;
 //   const handleChange = (event) => {
