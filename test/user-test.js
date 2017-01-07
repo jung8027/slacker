@@ -10,14 +10,6 @@ describe('User tests', () => {
     {username: 'test2', password: 'pass2'},
     {username: 'test3', password: 'pass3'}
   ];
-  //you can use 'before' to seed your database with data before your tests
-  //you only need one 'before' statement
-  //theres also a 'beforeEach' method if you want a function to run before each of your tests, individually
-  before(() => {
-    return User.sync({force: true})
-    .then(() => User.bulkCreate(users))
-    .catch((err) => console.log('DB Err!', err));
-  });
 
   it(`get request test, should pass`, () => {
     expect(3).equal(3);
