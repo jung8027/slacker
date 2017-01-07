@@ -26,4 +26,16 @@ describe('Team tests', () => {
         done(); 
       })
   });
+
+  it(`'/api/team/C4Q3.1' should respond with one team`, (done) => {
+    supertest(server)
+      .get('/api/team/C4Q3.1')
+      .end((err, res) => {
+        
+        expect(res.body.name).equal(team[0].name);
+        done(); 
+      })
+  });
 })
+
+
