@@ -1,56 +1,68 @@
 const router = require("express").Router();
 const Chatroom = require('../../db/models').Chatroom;
+const User = require('../../db/models').User;
+const Team = require('../../db/models').Team;
+const Message = require('../../db/models').Message;
 
-//new chat room
-const createChat = (req,res) => {
-	Chatroom.create({
-		name: req.body.chatroom
-	})
-	.then(()=>
-		res.send('Chatroom ' + req.body.chatroom + ' created!'))
-};
-
-//displays all chats on sidebar of active chatrooms to user
+//gets all chatrooms
 const getAllChats = (req,res) => (
 	Chatroom.findAll()
 	.then((chatrooms)=>
 		res.send(chatrooms))
 );
 
-
-//used for when user enters a room already created to join convo
-const getSingleRoom = (req,res) => (
-	Chatroom.findOne({
-		where: {id: req.params.chatroomId}
-	})
-	.then((chat)=>
-		res.send(chat))
-);
-
-
-//figure out function to what happens when user leaves room, if user is last person in room then the room closes. 
+//creates chat then adds in teamid needs to be pulled from store
+const createChat = (req,res) => {
+	Chatroom.findOrCreate(
+		{where:
+			{name: req.body.name,
+			TeamId: req.body.teamid}})
+	.then((data)=>
+		res.send(data))
+};
 
 
-const exitRoom = (req,res)=> (
-	Chatroom.destroy({
-		where: {id: req.params.chatroomId}
-// 		include: [{
-// 			model: User,
-// //			as: tbd,
-// 			where: {}
-// 		}]
-	})
-	.then((chat)=>
-		res.send('Chatroom '+chatId+' deleted!'))
-);
 
-router.route('/')
+//gets chatrooms that belong to team
+const getTeamChatrooms = (req,res)=>{
+	Team.findOne({
+		where: {name:req.params.teamname},
+			include: 
+				[{model: Chatroom}]
+	}).then((data)=>res.send(data))
+};
+
+//should populate user list of selected chatroom and their messages
+const getSingleChat = (req,res)=>{
+	Chatroom.findAll({
+		where: {name: req.params.chatname},
+			include:
+				[{model:User}],
+				include:
+					[{model:Message}]
+	}).then((data)=>res.send(data))
+};
+
+//if user is last one to exit chatroom this destroys chat
+// const deleteChatroom=(req,res)=>{
+// 	Chatroom.findOne({
+// 		where: {name: req.params.chatname},
+// 			include:
+// 				[{model:User}]
+// 	}).then((data)=>{(data.Users.length=1)?})res.send((data)))
+// };
+
+//get all routes for testing purposes
+// router.route('/')
+// 	.get(getAllChats)
+
+router.route('/:teamname')
+	.get(getTeamChatrooms)
 	.post(createChat)
-	.get(getAllChats)
 
-router.route('/:chatid')
-	.get(getSingleRoom)
-	.delete(exitRoom)
+router.route('/:teamname/:chatname')
+	.get(getSingleChat)
+	// .get(deleteChatroom)
 
 
 module.exports = router;
