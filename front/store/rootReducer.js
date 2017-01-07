@@ -1,12 +1,16 @@
 import {combineReducers} from 'redux';
-import app from '../features/app/appReducer';
+import channel from '../features/channel/channelReducer';
 import chatBar from '../features/chatBar/chatBarReducer';
-import User from '../features/user/userReducer';
-import Users from '../features/users/usersReducer';
+import joinTeam from '../features/joinTeam/joinTeamReducer';
+import login from '../features/login/loginReducer';
+import user from '../features/user/userReducer';
+import users from '../features/users/usersReducer';
 
 export const rootReducer = combineReducers({
-  app,
+  channel,
   chatBar,
-  User,
-  Users
+  joinTeam,
+  login,
+  user,
+  users
 });

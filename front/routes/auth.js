@@ -1,12 +1,12 @@
 module.exports = {
-  login(username, pass, cb) {
+  login(username, password, cb) {
     cb = arguments[arguments.length - 1]
     if (localStorage.token) {
       if (cb) cb(true)
       this.onChange(true)
       return
     }
-    pretendRequest(username, pass, (res) => {
+    pretendRequest(username, password, (res) => {
       if (res.authenticated) {
         localStorage.token = res.token
         if (cb) cb(true)
@@ -24,16 +24,16 @@ module.exports = {
   onChange() {}
 }
 
-const pretendRequest = (username, pass, cb) => {
+const pretendRequest = (username, password, cb) => {
   setTimeout(() => {
     console.log(username)
-    if (username === '' && pass === '') {
+    // if (username === '' && pass === '') {
       cb({
         authenticated: true,
         token: Math.random().toString(36).substring(7)
       })
-    } else {
-      cb({ authenticated: false })
-    }
+    // } else {
+    //   cb({ authenticated: false })
+    // }
   }, 0)
 }

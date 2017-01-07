@@ -1,4 +1,4 @@
-import {GET_USER} from './loginActions';
+import {USER_LOGIN} from './loginActions';
 
 const INTIAL_STATE = {
   input: "",

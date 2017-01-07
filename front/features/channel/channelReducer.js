@@ -1,4 +1,8 @@
-const INTIAL_STATE = {};
+
+
+const INTIAL_STATE = {
+
+};
 
 export default function(state = INTIAL_STATE, action) {
   switch(action.type){

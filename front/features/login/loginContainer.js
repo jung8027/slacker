@@ -1,11 +1,10 @@
-import {connect} from 'redux'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
+import Login from './Login'
 
-const LoginContainer = props =>{
-
-}
 
 const mapStateToProps = state => ({
 
 })
 
-export default connect(mapStateToProps)(LoginContainer)
+export default withRouter(connect(mapStateToProps)(Login))
