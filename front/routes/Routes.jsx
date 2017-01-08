@@ -1,16 +1,12 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import {App, Login, ChatBarContainer} from '../features';
+import {App, ChannelContainer, ChatBarContainer, Landing, LoginContainer,JoinTeamContainer, UserContainer} from '../features';
 import auth from './auth.js'
 
 
 const Channel = props => {
   return (<div>Channel</div>)
 }
-
-const Member = props => {
-  return (<div>Member</div>)
-};
 
 const redirectToLogin = (nextState, replace) => {
   if(!auth.loggedIn()){
@@ -21,11 +17,16 @@ const redirectToLogin = (nextState, replace) => {
 }
 
 export default (
-  <Route path="/">
-    <IndexRoute component={Login}/>
+  <Route>
+    <Route path='/' component={Landing}>
+      <IndexRoute component={LoginContainer}/>
+      <Route onEnter={redirectToLogin}>
+        <Route path="/jointeam" component={JoinTeamContainer}/>
+      </Route>
+    </Route>
     <Route onEnter={redirectToLogin}>
       <Route component={App}>
-        <Route path="/:team/:channel" components={{channel: Channel, member: Member, chat: ChatBarContainer}} />
+        <Route path="/:team/:channel" components={{channel: ChannelContainer, user: UserContainer, chat: ChatBarContainer}} />
       </Route>
     </Route>
   </Route>

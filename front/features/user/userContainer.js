@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.userReducer.user, 
+  user: state.user.user, 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)

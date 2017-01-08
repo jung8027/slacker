@@ -9,26 +9,15 @@ const Login = React.createClass({
   submitLoginInfo() {  
     event.preventDefault()
 
+    //Jung make the ajax request in file routes/auth in the pretend request you can find more infomation on about react router auth here => https://github.com/ReactTraining/react-router/tree/master/examples/auth-flow
     auth.login(this.state.username, this.state.password, (loggedIn) => {
-      if (!loggedIn)
-        return this.setState({ error: true })
 
-      const { location } = this.props
-
-      if (location.state && location.state.nextPathname) {
-        this.props.router.replace(location.state.nextPathname)
+      if (loggedIn){
+        this.props.router.replace("/C4Q3.1/C4Q3.1")
       } else {
         this.props.router.replace('/')
       }
     })
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/api/login',
-    //   data: this.state
-    // })
-    // .done((data) => {
-    //   console.log('received user data', data);
-    // })
   },
   handleChange(eventType, event) {
     this.setState({[eventType]: event.target.value});
