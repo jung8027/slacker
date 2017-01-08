@@ -21,8 +21,6 @@ const createChat = (req,res) => {
 		res.send(data))
 };
 
-
-
 //gets chatrooms that belong to team
 const getTeamChatrooms = (req,res)=>{
 	Team.findOne({
@@ -32,15 +30,15 @@ const getTeamChatrooms = (req,res)=>{
 	}).then((data)=>res.send(data))
 };
 
-//should populate user list of selected chatroom and their messages
+// should populate user list of selected chatroom and their messages
 const getSingleChat = (req,res)=>{
 	Chatroom.findAll({
 		where: {name: req.params.chatname},
-			include:
-				[{model:User}],
-				include:
-					[{model:Message}]
-	}).then((data)=>res.send(data))
+		include:
+			[{model:User, 
+      		include: [Message],
+        	attributes: {exclude: ['password']}}]
+}).then((data)=>res.send(data))
 };
 
 //if user is last one to exit chatroom this destroys chat
