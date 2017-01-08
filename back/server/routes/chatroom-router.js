@@ -30,14 +30,14 @@ const getTeamChatrooms = (req,res)=>{
 	}).then((data)=>res.send(data))
 };
 
-//should populate user list of selected chatroom and their messages
+// should populate user list of selected chatroom and their messages
 const getSingleChat = (req,res)=>{
 	Chatroom.findAll({
 		where: {name: req.params.chatname},
 		include:
 			[{model:User, 
-      			include: [Message],
-        		attributes: {exclude: ['password']}}]
+      		include: [Message],
+        	attributes: {exclude: ['password']}}]
 }).then((data)=>res.send(data))
 };
 
