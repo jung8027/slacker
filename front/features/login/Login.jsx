@@ -25,6 +25,8 @@ const Login = React.createClass({
   render() {
     return (
       <div>
+      LOG-IN
+      <br/>
         Username:
         <input onChange={this.handleChange.bind(this, 'username')} type="text"/>
         Password:
