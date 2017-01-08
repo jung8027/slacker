@@ -29,7 +29,7 @@ describe('User tests', () => {
   });
 });
 
-describe('new User with duplicate username. should receive ERROR MESSAGE username must be unique', () => {
+describe('new User with duplicate username. should receive ERROR MESSAGE: username must be unique', () => {
   var user2 = {username: "test1", password: 'pass'};
   before(()=>{
     return User.sync()
