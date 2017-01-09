@@ -16,7 +16,10 @@ describe('Message tests', () => {
       .end((err, res) => {
         const random = Math.floor(Math.random() * (res.body.length - 1))
         expect(res.body.length).gt(0);
+
+        //check a random message to make sure it has a userId and chatroomID
         expect(res.body[random].UserId).be.a('number')
+        expect(res.body[random].ChatroomId).be.a('number')
         //done is required in order to execute the test
         done(); 
       })

@@ -7,9 +7,9 @@ const db = require('../db/models').sequelize
 
 //data
 const users = [
-  {username: 'test1', password: 'pass1'},
-  {username: 'test2', password: 'pass2'},
-  {username: 'test3', password: 'pass3'},
+  {username: 'test1', password: 'pass1', currentTeam: 1},
+  {username: 'test2', password: 'pass2', currentTeam: 1},
+  {username: 'test3', password: 'pass3', currentTeam: 1},
 ];
 const messages = [
   {msg: "This is the first message", UserId: 1},
@@ -24,10 +24,13 @@ const messages = [
 const teams = [
   {name: 'C4Q3.1'},
   {name: 'C4Q3.2'},
-  {name: 'C4Q3.3'},
+  {name: 'C4Q3.3'},  
 ];
 
 const chatrooms = [
+  {name: 'C4Q3.1'},
+  {name: 'C4Q3.2'},
+  {name: 'C4Q3.3'},
   {name: 'slackers'},
   {name: 'nate'},
   {name: 'resources'},
@@ -45,7 +48,7 @@ db.sync({force: true})
 .then(() => Message.bulkCreate(messages))
 .then(() => Team.findById(1))
 .then(team => {
-  team.addChatrooms([1,2,3])
+  team.addChatrooms([1,2,3,4,5,6])
   team.addUsers([1,2,3])
 })
 .then(() => Chatroom.findById(1))

@@ -64,3 +64,35 @@ router.route('/')
 	.delete(destroySession)
 
 module.exports = router;
+
+  // let foundUser = null;
+  // User.findOne({
+  //     where: {
+  //       username: req.body.username
+  //     },
+  //  })
+  // .then((user) => {
+  //   //IF user exists, check if password is correct
+  //   if(user && user.password === req.body.password) {
+  //     console.log('Password is correct!')
+  //     return user;
+  //   //ELSE IF user does not exist, create new user
+  //   } else if(!user) {
+  //     console.log('User does not exist!');
+  //   } else {
+  //     return null;
+  //   }
+  // })
+  // .then((user) => {
+  //   if(user) {
+  //     debug('user found')
+  //     return user.getTeams()
+  //     debug("current",user.get('currentTeam'))
+  //     return Chatroom.findById(user.get('currentTeam'), 
+  //       {include: []})
+  //   } else {
+  //     res.send('Incorrect password or username!');
+  //   }
+  // })
+  // .then(team => {
+  // })

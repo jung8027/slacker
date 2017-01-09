@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import ChatBar from './ChatBar'
-import {inputAction} from './chatBarActions'
+import ChatView from './ChatView'
+import {inputAction} from './chatViewActions'
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => (
 )
 
 const mapStateToProps = state => ({
-  input: state.chatBar.input
+  input: state.chatView.input
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatBar)
+export default connect(mapStateToProps, mapDispatchToProps)(ChatView)

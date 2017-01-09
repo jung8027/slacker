@@ -1,0 +1,21 @@
+body {
+  .app {
+    display: flex;
+    .team_list {
+      border: 1px solid blue;
+      width: 5%;
+    }
+    .channel_list{
+      border: 1px solid blue;
+      width: 20%;
+    }
+    .chat_view{
+      border: 1px solid red;
+      width: 50%;
+    }
+    .user_list{
+      border: 1px solid red;
+      width: 20%;
+    }
+  }
+}
