@@ -7,8 +7,8 @@ import store from './store/store';
 
 import SocketListeners from './socket'
 
-//css
-import './App.css';
+//scss
+import './scss/app.scss';
 
 SocketListeners(store)
 

@@ -6,7 +6,8 @@ module.exports = function(sequelize, DataTypes) {
       unique: true, 
       validate: {notEmpty: true}
     },
-    password: {type: DataTypes.STRING, validate: {notEmpty: true}}
+    password: {type: DataTypes.STRING, validate: {notEmpty: true}},
+    currentTeam: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

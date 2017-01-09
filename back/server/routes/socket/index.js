@@ -1,11 +1,9 @@
 module.exports = ((app,io)=>{ 
   const _ = require('lodash'),
+        Message = require('../../../db/models').Message;
         debug = require('debug')('SOCKET')
 
-  var totalMessagesReceivedForTest = 0;
-
   io.on('connection', socket => {
-
     socket.on('connection-name',function(user){
       io.sockets.emit('new user', user.name + " has joined.");
     }); 
@@ -19,21 +17,16 @@ module.exports = ((app,io)=>{
     })
 
     socket.on('message', payload => {
-      const room, msg = payload;
-      debug(room)
-      io.to(room).emit('received-message', msg)
+      const {room, msg, userId, username, chatroomId} = payload;
+      Message.create({
+        msg, 
+        UserId: userId,
+        ChatroomId: chatroomId
+      })
+      io.to(room).emit('received-message', {msg, username})
+
+
     })
-
-    socket.on('add-received-message', () => {
-      debug(socket.id)
-      totalMessagesReceivedForTest++
-      setTimeout(() =>{
-        io.emit('received-message-total', totalMessagesReceivedForTest)
-        totalMessagesReceivedForTest = 0;
-      }, 550)
-    })
-
-
 
     socket.on('disconnect', function(){
     });

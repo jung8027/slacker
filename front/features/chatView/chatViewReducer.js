@@ -1,4 +1,4 @@
-import {UPDATE_CHATBAR} from './chatBarActions'
+import {UPDATE_CHATBAR} from './chatViewActions'
 
 const INTIAL_STATE = {
   input: "",
