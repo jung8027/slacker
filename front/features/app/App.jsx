@@ -1,5 +1,6 @@
 import React from 'react';
 import {Navbar} from '../index';
+import auth from '../../routes/auth';
 
 const App = React.createClass({
   render() {
@@ -9,6 +10,7 @@ const App = React.createClass({
         {chat}
         {channel}
         {user}
+        <button onClick={auth.logout()}>Log Out</button>
       </div>
     )
   }

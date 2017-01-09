@@ -5,5 +5,6 @@ router.use('/user', require('./user-router'));
 router.use('/team', require('./team-router'));
 router.use('/message', require('./messages/message-router'));
 router.use('/chatroom', require('./chatroom-router'));
+router.use('/login', require('./login-router'));
 
 module.exports = router;
