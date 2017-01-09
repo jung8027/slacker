@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import store from '../store/store.js'
+
 module.exports = {
   login(username, password, cb) {
     cb = arguments[arguments.length - 1]
@@ -21,19 +24,39 @@ module.exports = {
   loggedIn() {
     return !!localStorage.token
   },
+
+  logout(cb) {
+    delete localStorage.token
+    if (cb) cb()
+    this.onChange(false)
+  },
+  
   onChange() {}
 }
 
 const pretendRequest = (username, password, cb) => {
   setTimeout(() => {
-    console.log(username)
-    // if (username === '' && pass === '') {
+    $.ajax({
+      url: '/api/login',
+      type: 'POST',
+      data: 
+        {
+          username: username,
+          password: password
+        }
+    })
+    .done((userInfo)=>{
+      console.log('from auth.js', userInfo)
+      store.dispatch({
+        type: 'AUTH_USER',
+        userInfo
+      })
       cb({
         authenticated: true,
         token: Math.random().toString(36).substring(7)
       })
-    // } else {
-    //   cb({ authenticated: false })
-    // }
+    })
+    .catch(()=> cb({ authenticated: false }))
   }, 0)
 }
+
