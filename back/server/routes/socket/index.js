@@ -2,7 +2,7 @@ module.exports = ((app,io)=>{
   const _ = require('lodash'),
         debug = require('debug')('SOCKET')
 
-  let totalMessagesReceivedForTest = 0;
+  var totalMessagesReceivedForTest = 0;
 
   io.on('connection', socket => {
 
@@ -19,7 +19,7 @@ module.exports = ((app,io)=>{
     })
 
     socket.on('message', payload => {
-      const {room, msg} = payload;
+      const room, msg = payload;
       debug(room)
       io.to(room).emit('received-message', msg)
     })
