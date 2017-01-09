@@ -1,7 +1,7 @@
- import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import * as actions from './userActions'
-import User from './User' 
+ import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from './userProfileActions';
+import UserProfile from './UserProfile';
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch)

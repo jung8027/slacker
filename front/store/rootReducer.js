@@ -3,8 +3,8 @@ import channel from '../features/channel/channelReducer';
 import chatView from '../features/chatView/chatViewReducer';
 import joinTeam from '../features/joinTeam/joinTeamReducer';
 import login from '../features/login/loginReducer';
-import user from '../features/user/userReducer';
-import users from '../features/users/usersReducer';
+import user from '../features/userProfile/userProfileReducer';
+import userslist from '../features/usersList/usersListReducer';
 
 export const rootReducer = combineReducers({
   channel,
@@ -12,5 +12,5 @@ export const rootReducer = combineReducers({
   joinTeam,
   login,
   user,
-  users
+  userslist
 });
