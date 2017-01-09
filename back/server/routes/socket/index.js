@@ -1,3 +1,4 @@
+
 module.exports = ((app,io)=>{ 
   const _ = require('lodash'),
         Message = require('../../../db/models').Message;
@@ -17,6 +18,7 @@ module.exports = ((app,io)=>{
     })
 
     socket.on('message', payload => {
+      let payload
       const {room, msg, userId, username, chatroomId} = payload;
       Message.create({
         msg, 

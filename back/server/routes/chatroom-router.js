@@ -26,7 +26,9 @@ const getTeamChatrooms = (req,res)=>{
 	Team.findOne({
 		where: {name:req.params.teamname},
 			include: 
-				[{model: Chatroom}]
+				[{model: Chatroom, 
+      			include: [Message],
+        		attributes: {exclude: ['password']}}]
 	}).then((data)=>res.send(data))
 };
 
@@ -36,9 +38,11 @@ const getSingleChat = (req,res)=>{
 		where: {name: req.params.chatname},
 		include:
 			[{model:User, 
-      		include: [Message],
+      		include: 
+      			[{model: Message, limit: 10}],
+      		order: [['createdAt', 'DESC']],
         	attributes: {exclude: ['password']}}]
-}).then((data)=>res.send(data))
+	}).then((data)=>res.send(data))
 };
 
 //if user is last one to exit chatroom this destroys chat
