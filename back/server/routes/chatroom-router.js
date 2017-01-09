@@ -38,7 +38,9 @@ const getSingleChat = (req,res)=>{
 		where: {name: req.params.chatname},
 		include:
 			[{model:User, 
-      		include: [Message],
+      		include: 
+      			[{model: Message, limit: 10}],
+      		order: [['createdAt', 'DESC']],
         	attributes: {exclude: ['password']}}]
 	}).then((data)=>res.send(data))
 };
