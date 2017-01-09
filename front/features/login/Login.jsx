@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import auth from '../../routes/auth'
+import {socket} from '../../socket'
 
 const Login = React.createClass({
   getInitialState() {
@@ -14,6 +15,7 @@ const Login = React.createClass({
 
       if (loggedIn){
         this.props.router.replace("/C4Q3.1/C4Q3.1")
+        socket.emit("join-rooms", ["test", "test2"])
       } else {
         this.props.router.replace('/')
       }

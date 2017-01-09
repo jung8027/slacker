@@ -6,9 +6,9 @@ const App = React.createClass({
     const {channel, user, chat} = this.props
     return (
       <div>
-        {chat}
-        {channel}
-        {user}
+        <section className="chat_bar">{chat}</section>
+        <section className="channel_list">{channel}</section>
+        <section className="userlist">{user}</section>
       </div>
     )
   }

@@ -4,10 +4,6 @@ import {App, ChannelContainer, ChatBarContainer, Landing, LoginContainer,JoinTea
 import auth from './auth.js'
 
 
-const Channel = props => {
-  return (<div>Channel</div>)
-}
-
 const redirectToLogin = (nextState, replace) => {
   if(!auth.loggedIn()){
     replace({
