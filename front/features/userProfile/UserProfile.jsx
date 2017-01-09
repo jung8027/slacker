@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-const User = React.createClass({ 
+const UserProfile = React.createClass({ 
   render() {
     return (
       <div>
@@ -14,4 +14,4 @@ const User = React.createClass({
   }
 });
 
-export default User;
+export default UserProfile;
