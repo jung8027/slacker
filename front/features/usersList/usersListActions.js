@@ -1,5 +1,4 @@
-
-import $ from 'jquery'
+import $ from 'jquery';
 
 const GET_ALL_USERS = 'get_all_users';
 
