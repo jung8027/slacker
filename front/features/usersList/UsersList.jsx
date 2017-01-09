@@ -4,7 +4,7 @@
 //convert this to redux
 
 import React from 'react';
-import UserProfile from './UserProfile';
+import UserProfile from '../userProfile/UserProfile';
 
 const UsersList = (props) => {
   console.log(props)

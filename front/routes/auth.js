@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _ from 'lodash';
 import store from '../store/store.js'
 
 module.exports = {
@@ -47,11 +48,18 @@ const pretendRequest = (username, password, cb) => {
     })
     .done((userInfo)=>{
       console.log('from auth.js', userInfo)
+      const channelMembers = _.find(userInfo.Users.Chatrooms, (channel) => {
+        console.log(channel.Users)
+        return channel.Users
+      })
       store.dispatch({
         type: 'AUTH_USER',
-        userName: userInfo.username,
-        userChatrooms: userInfo.Chatrooms,
-        userTeams: userInfo.Teams,
+        userName: userInfo.Users.username,
+        userId: userInfo.Users.id,
+        userChatrooms: userInfo.Users.Chatrooms,
+        userTeam: userInfo.Team,
+        messages: userInfo.Messages,
+
       })
       cb({
         authenticated: true,

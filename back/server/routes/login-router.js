@@ -39,25 +39,28 @@ const createSession = (req, res) => {
               where: {
                 username: user.get('username')
               },
-              include: [{
-                //include all the chatroom name plus infomation about the users in the current Chatroom
-                model: Chatroom,
-                where: {
-                  TeamId: user.get('currentTeam')
+              include: [
+                {
+                  //include all the chatroom name plus infomation about the users in the current Chatroom
+                  model: Chatroom,
+                  where: {
+                    TeamId: user.get('currentTeam')
+                  },
+                  order: ['name'],
+                  attributes: ['name', 'id'],
+                  //only get infomation about the users in the current chatroom
+                  include: [{
+                    model: User,
+                    attributes: ['username', 'id'],
+                    through: {
+                      where: {
+                        ChatroomId: user.get('currentTeam')
+                      } 
+                    }
+                  }]
                 },
-                order: ['name'],
-                attributes: ['name', 'id'],
-                //only get infomation about the users in the current chatroom
-                include: [{
-                  model: User,
-                  attributes: ['username', 'id']
-                  through: {
-                    where: {
-                      ChatroomId: user.get('currentTeam')
-                    } 
-                  }
-                }]
-              }]
+                {model: Team}
+              ]
             },
             {model: Message},
             {model: Team, attributes: ['name','id']}
@@ -68,7 +71,6 @@ const createSession = (req, res) => {
     }
   })
   .then(channel => {
-    debug(channel)
     res.send(channel)
   })
 };
