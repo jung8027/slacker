@@ -25,7 +25,6 @@ module.exports = ((app,io)=>{
       })
       io.to(room).emit('received-message', {msg, username})
 
-
     })
 
     socket.on('disconnect', function(){

@@ -50,7 +50,7 @@ const createSession = (req, res) => {
                 //only get infomation about the users in the current chatroom
                 include: [{
                   model: User,
-                  attributes: ['username', 'id']
+                  attributes: ['username', 'id'],
                   through: {
                     where: {
                       ChatroomId: user.get('currentTeam')
