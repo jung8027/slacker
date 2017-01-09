@@ -1,7 +1,7 @@
 import store from '../store/store';
 import io from 'socket.io-client';
 export const socket = io.connect();
-import {UPDATE_MESSAGES} from '../features/chatBar/chatBarActions'
+import {UPDATE_MESSAGES} from '../features/chatView/chatViewActions'
 
 
 export default (store) => { 

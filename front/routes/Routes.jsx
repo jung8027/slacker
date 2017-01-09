@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import {App, ChannelContainer, ChatBarContainer, Landing, LoginContainer,JoinTeamContainer, UserContainer} from '../features';
+import {App, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserContainer} from '../features';
 import auth from './auth.js'
 
 
@@ -22,7 +22,14 @@ export default (
     </Route>
     <Route onEnter={redirectToLogin}>
       <Route component={App}>
-        <Route path="/:team/:channel" components={{channel: ChannelContainer, user: UserContainer, chat: ChatBarContainer}} />
+        <Route path="/:team/:channel" 
+          components={{
+            channel: ChannelContainer, 
+            chat: ChatViewContainer, 
+            teamList: TeamListContainer, 
+            user: UserContainer
+          }} 
+        />
       </Route>
     </Route>
   </Route>
