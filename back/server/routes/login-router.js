@@ -35,7 +35,8 @@ const createSession = (req, res) => {
       console.log('user found', user)
       res.send(user);
     } else {
-      res.send('Incorrect password or username!');
+      console.log('Incorrect password or username!')
+      return null
     }
   })
 };

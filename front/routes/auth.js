@@ -30,7 +30,7 @@ module.exports = {
     if (cb) cb()
     this.onChange(false)
   },
-  
+
   onChange() {}
 }
 
@@ -49,7 +49,9 @@ const pretendRequest = (username, password, cb) => {
       console.log('from auth.js', userInfo)
       store.dispatch({
         type: 'AUTH_USER',
-        userInfo
+        userName: userInfo.username,
+        userChatrooms: userInfo.Chatrooms,
+        userTeams: userInfo.Teams,
       })
       cb({
         authenticated: true,

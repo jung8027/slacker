@@ -10,7 +10,7 @@ const App = React.createClass({
         {chat}
         {channel}
         {user}
-        <button onClick={auth.logout()}>Log Out</button>
+        <button onClick={auth.logout}>Log Out</button>
       </div>
     )
   }
