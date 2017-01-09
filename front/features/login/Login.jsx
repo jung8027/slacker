@@ -9,9 +9,8 @@ const Login = React.createClass({
   },
   submitLoginInfo() {  
     event.preventDefault();
-    //Jung make the ajax request in file routes/auth in the pretend request you can find more infomation on about react router auth here => https://github.com/ReactTraining/react-router/tree/master/examples/auth-flow
     auth.login(this.state.username, this.state.password, (loggedIn) => {
-      console.log(loggedIn);
+      console.log('loggedin?', loggedIn);
       if (loggedIn){
         this.props.router.push("/C4Q3.1/C4Q3.1")
         socket.emit("join-rooms", ["test", "test2"])
