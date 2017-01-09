@@ -46,7 +46,6 @@ const pretendRequest = (username, password, cb) => {
         }
     })
     .done((userInfo)=>{
-      console.log('from auth.js', userInfo)
       store.dispatch({
         type: 'AUTH_USER',
         userName: userInfo.username,
