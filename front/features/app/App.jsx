@@ -11,7 +11,7 @@ const App = React.createClass({
         <section className="channel_list">{channel}</section>
         <section className="chat_view">{chat}</section>
         <section className="user_list">{user}</section>
-        <button onClick={auth.logout}>Log Out</button>
+        <button onClick={()=>auth.logout()}>Log Out</button>
       </div>
     )
   }

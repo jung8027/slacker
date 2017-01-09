@@ -10,13 +10,10 @@ const Team = require('../../db/models').Team;
 //FUNCTION//
 
 const createSession = (req, res) => {
-	User.findOne({
+  User.findOne({
       where: {
         username: req.body.username
       },
-      include: [
-				{model: Message}, {model: Team, include: [ {model: Chatroom} ]}, {model: Chatroom}
-			]
    })
   .then((user) => {
     //IF user exists, check if password is correct
@@ -32,12 +29,47 @@ const createSession = (req, res) => {
   })
   .then((user) => {
     if(user) {
-      console.log('user found', user)
-      res.send(user);
+      return Chatroom.findById(user.get('currentTeam'), 
+        {
+          include: [
+            {
+              //include infomation about the current user and the chatrooms that they are in 
+              model: User,
+              attributes: {exclude: ['password']},
+              where: {
+                username: user.get('username')
+              },
+              include: [{
+                //include all the chatroom name plus infomation about the users in the current Chatroom
+                model: Chatroom,
+                where: {
+                  TeamId: user.get('currentTeam')
+                },
+                order: ['name'],
+                attributes: ['name', 'id'],
+                //only get infomation about the users in the current chatroom
+                include: [{
+                  model: User,
+                  attributes: ['username', 'id']
+                  through: {
+                    where: {
+                      ChatroomId: user.get('currentTeam')
+                    } 
+                  }
+                }]
+              }]
+            },
+            {model: Message},
+            {model: Team, attributes: ['name','id']}
+          ]
+        })
     } else {
-      console.log('Incorrect password or username!')
-      return null
+      res.send('Incorrect password or username!');
     }
+  })
+  .then(channel => {
+    debug(channel)
+    res.send(channel)
   })
 };
 
@@ -65,34 +97,3 @@ router.route('/')
 
 module.exports = router;
 
-  // let foundUser = null;
-  // User.findOne({
-  //     where: {
-  //       username: req.body.username
-  //     },
-  //  })
-  // .then((user) => {
-  //   //IF user exists, check if password is correct
-  //   if(user && user.password === req.body.password) {
-  //     console.log('Password is correct!')
-  //     return user;
-  //   //ELSE IF user does not exist, create new user
-  //   } else if(!user) {
-  //     console.log('User does not exist!');
-  //   } else {
-  //     return null;
-  //   }
-  // })
-  // .then((user) => {
-  //   if(user) {
-  //     debug('user found')
-  //     return user.getTeams()
-  //     debug("current",user.get('currentTeam'))
-  //     return Chatroom.findById(user.get('currentTeam'), 
-  //       {include: []})
-  //   } else {
-  //     res.send('Incorrect password or username!');
-  //   }
-  // })
-  // .then(team => {
-  // })
