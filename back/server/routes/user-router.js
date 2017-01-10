@@ -18,7 +18,7 @@ const getAllUsers = (req,res) => (
 
 const getOneUser = (req,res) => (
 	User.findOne({
-		where: {id: req.params.UserId},
+		where: {username: req.params.username},
 		include: [
 		{model: Message}, {model: Team, include: [ {model: Chatroom} ]}, {model: Chatroom}
 		]
@@ -50,7 +50,7 @@ const createUser = (req,res) => {
 
 const deleteUser = (req,res)=> (
 	User.destroy({
-		where: {id: req.params.UserId}
+		where: {username: req.params.username}
 	})
 )
 .then((userInfo)=>res.send(userInfo+' deleted!'))
@@ -60,7 +60,7 @@ router.route('/')
 	.get(getAllUsers)
 	.post(createUser)  //
 
-router.route('/:UserId')
+router.route('/:username')
 	.get(getOneUser)
 	.delete(deleteUser)
 

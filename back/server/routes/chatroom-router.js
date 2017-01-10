@@ -41,10 +41,17 @@ const getSingleChat = (req,res)=>{
         attributes: ['username', 'id'],
 
         //remove infomation about the jointable
-        joinTableAttributes: []
+        through: {
+          where: {
+            ChatroomId: 1
+          },
+        attributes: [{exclude: ["User_Chat"]}]
+
+        }
       },
       {
         model: Message,
+        include: [{model: User}],
         limit: 10,
         order: [['createdAt', 'DESC']],
         attributes: ['User_Chat'],
