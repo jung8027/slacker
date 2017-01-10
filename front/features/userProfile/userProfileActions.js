@@ -11,7 +11,7 @@ export const getOneUser = (user) => (
 
 export const getUserAysnc = () => (dispatch) =>{
   return $.ajax({
-    url: '/users/:id',
+    url: '/user/:username',
     dataType: 'json',
     type: 'GET'
   })
