@@ -3,10 +3,6 @@ import {CompositeDecorator, Editor, EditorState, RichUtils} from 'draft-js';
 import {socket} from '../../socket';
 import _ from 'lodash';
 
-const sendMessage = (contentBlock) => {
-  console.log("contentBlock", contentBlock)
-}
-
 export default class ChatBar extends React.Component{
 
   constructor(props) {
@@ -48,12 +44,9 @@ export default class ChatBar extends React.Component{
     ));
   }
 
-  sendMessages(contentBlock){
-    const {input} = this.props;
-    const channels = "test";
-    const text = contentBlock.getText();
-    console.log(text)
-    socket.emit('message', {room: channels, msg:input, UserId: 1, ChatroomId: 1, username: "Slackers"})
+  sendMessage(contentBlock){
+    const {input, channel} = this.props;
+    socket.emit('message', {room: channel, msg:input, UserId: 1, ChatroomId: 1, username: "Slackers"})
   };
 
   render() {
@@ -63,7 +56,7 @@ export default class ChatBar extends React.Component{
           type='text'
           onChange={this.handleChange.bind(this)}
         />
-        <button onClick={()=> sendMessage(this.props.input)}>Send</button>
+        <button onClick={()=> this.sendMessage(this.props.input)}>Send</button>
         {/*<h1>Draft.js Editor</h1>
         <button onClick={this._onBoldClick.bind(this)}>Bold</button>
         <div style={styles.editor} onClick={this.focus}>

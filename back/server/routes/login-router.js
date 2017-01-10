@@ -14,6 +14,7 @@ const createSession = (req, res) => {
       where: {
         username: req.body.username
       },
+      attributes: {exclude: ['createdAt', 'updatedAt']}
    })
   .then((user) => {
     //IF user exists, check if password is correct
@@ -29,53 +30,13 @@ const createSession = (req, res) => {
   })
   .then((user) => {
     if(user) {
-      return Chatroom.findById(user.get('currentTeam'), 
-        {
-          include: [
-            {
-              //include infomation about the current user and the chatrooms that they are in 
-              model: User,
-              attributes: {exclude: ['password']},
-              where: {
-                username: user.get('username')
-              },
-              include: [
-                {
-                  //include all the chatroom name plus infomation about the users in the current Chatroom
-                  model: Chatroom,
-                  where: {
-                    TeamId: user.get('currentTeam')
-                  },
-                  order: ['name'],
-                  attributes: ['name', 'id'],
-                  //only get infomation about the users in the current chatroom
-                  include: [{
-                    model: User,
-                    attributes: ['username', 'id'],
-                    through: {
-                      where: {
-                        ChatroomId: user.get('currentTeam')
-                      } 
-                    }
-                  }]
-                },
-                {model: Team}
-              ]
-            },
-            {
-              model: Message,
-              limit: 10,
-              order: [['createdAt', 'DESC']]
-            },
-            {model: Team, attributes: ['name','id']}
-          ]
-        })
+      return Promise.all([user.getTeams({attributes: ["name",'id'], joinTableAttributes: []}), user.getChatrooms({attributes: ["name",'id'], joinTableAttributes: []}), user])
     } else {
       res.send('Incorrect password or username!');
     }
   })
-  .then(channel => {
-    res.send(channel)
+  .spread((teams, chatrooms, user) => {
+    res.send({teams, chatrooms, user})
   })
 };
 
