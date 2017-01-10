@@ -5,7 +5,7 @@ import {socket} from '../../socket'
 
 const Login = React.createClass({
   getInitialState() {
-    return {username: '', password: ''};
+    return {username: 'test1', password: 'pass1'};
   },
   submitLoginInfo() {  
     event.preventDefault();
@@ -28,9 +28,9 @@ const Login = React.createClass({
       LOG-IN
       <br/>
         Username:
-        <input onChange={this.handleChange.bind(this, 'username')} type="text"/>
+        <input onChange={this.handleChange.bind(this, 'username')} value={this.state.username} type="text"/>
         Password:
-        <input onChange={this.handleChange.bind(this, 'password')} type="password"/>
+        <input onChange={this.handleChange.bind(this, 'password')} value={this.state.password} type="password"/>
         <button onClick={this.submitLoginInfo}>Submit</button>
       </div>
     )

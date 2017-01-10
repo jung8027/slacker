@@ -6,17 +6,15 @@ import store from '../../store/store'
 
 const App = React.createClass({
   componentDidMount(){
-    if(localStorage.userInfo){
-      let userInfo = JSON.parse(localStorage.userInfo)
-      console.log('token recall', userInfo)
-      store.dispatch({
-        type: 'AUTH_USER',
-        userId: userInfo.Users[0].id,
-        userName: userInfo.Users[0].username,
-        userChatrooms: userInfo.Users[0].Chatrooms,
-        userTeams: userInfo.Users[0].Teams
-      })
-    }
+    // if(localStorage.userInfo){
+    //   let userInfo = JSON.parse(localStorage.userInfo)
+    //   store.dispatch({
+    //     type: 'AUTH_USER',
+    //     userName: userInfo.username,
+    //     userChatrooms: userInfo.Chatrooms,
+    //     userTeams: userInfo.Teams
+    //   })
+    // }
   },
   render() {
     const {channel, user, chat, teamList} = this.props

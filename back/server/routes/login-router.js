@@ -62,7 +62,11 @@ const createSession = (req, res) => {
                 {model: Team}
               ]
             },
-            {model: Message},
+            {
+              model: Message,
+              limit: 10,
+              order: [['createdAt', 'DESC']]
+            },
             {model: Team, attributes: ['name','id']}
           ]
         })

@@ -32,9 +32,23 @@ module.exports = {
     delete localStorage.userInfo
   },
 
-  onChange() {}
-}
+  onChange() {},
 
+}
+const initialInfo = (userInfo) => {
+  const channelMembers = _.find(userInfo.Users[0].Chatrooms, (channel) => {
+    return channel.Users.length > 0
+  })
+  store.dispatch({
+    type: 'AUTH_USER',
+    userName: userInfo.Users[0].username,
+    userId: userInfo.Users[0].id,
+    userChatrooms: userInfo.Users[0].Chatrooms,
+    userTeam: userInfo.Users[0].Teams,
+    messages: userInfo.Messages,
+    channelMembers
+  })
+}
 const pretendRequest = (username, password, cb) => {
   setTimeout(() => {
     $.ajax({
@@ -47,18 +61,8 @@ const pretendRequest = (username, password, cb) => {
         }
     })
     .done((userInfo)=>{
-      console.log('from auth.js route', userInfo)
-      const channelMembers = _.find(userInfo.Users.Chatrooms, (channel) => {
-        console.log(channel.Users)
-        return channel.Users
-      })
-      store.dispatch({
-        type: 'AUTH_USER',
-        userName: userInfo.Users[0].username,
-        userId: userInfo.Users.id,
-        userChatrooms: userInfo.Users[0].Chatrooms,
-        userTeam: userInfo.Users[0].Teams
-      })
+      console.log('from auth.js', userInfo)
+      initialInfo(userInfo)
       cb({
         authenticated: true,
         token: Math.random().toString(36).substring(7),
