@@ -5,7 +5,7 @@ const GET_ALL_USERS = 'get_all_users';
 export const getAllUsers = (users) => (
   {
     type: GET_ALL_USERS,
-    users
+    usersList
   }
 )
 
@@ -16,6 +16,6 @@ export const getUsersAysnc = () => (dispatch) =>{
     type: 'GET'
   })
   .done(users => {
-    dispatch(getAllUsers(users));
+    dispatch(getAllUsers(usersList));
   })
 }
