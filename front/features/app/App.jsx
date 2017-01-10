@@ -17,7 +17,7 @@ const App = React.createClass({
     }
   },
   render() {
-    const {channel, user, chat, teamList} = this.props
+    const {channel, usersList, chat, teamList} = this.props
     return (
       <div className="app">
         <section className="team_list">{teamList}</section>
