@@ -18,7 +18,7 @@ module.exports = ((app,io)=>{
     })
 
     socket.on('message', payload => {
-      let {room, msg, userId, username, chatroomId} = payload;
+      const {room, msg, userId, username, chatroomId} = payload;
       Message.create({
         msg, 
         UserId: userId,

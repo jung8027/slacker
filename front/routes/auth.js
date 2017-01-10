@@ -13,6 +13,7 @@ module.exports = {
     pretendRequest(username, password, (res) => {
       if (res.authenticated) {
         localStorage.token = res.token
+        localStorage.userInfo = res.userInfo
         if (cb) cb(true)
         this.onChange(true)
       } else {
@@ -26,15 +27,28 @@ module.exports = {
     return !!localStorage.token
   },
 
-  logout(cb) {
+  logout() {
     delete localStorage.token
-    if (cb) cb()
-    this.onChange(false)
+    delete localStorage.userInfo
   },
 
-  onChange() {}
-}
+  onChange() {},
 
+}
+const initialInfo = (userInfo) => {
+  const channelMembers = _.find(userInfo.Users[0].Chatrooms, (channel) => {
+    return channel.Users.length > 0
+  })
+  store.dispatch({
+    type: 'AUTH_USER',
+    userName: userInfo.Users[0].username,
+    userId: userInfo.Users[0].id,
+    userChatrooms: userInfo.Users[0].Chatrooms,
+    userTeam: userInfo.Users[0].Teams,
+    messages: userInfo.Messages,
+    channelMembers
+  })
+}
 const pretendRequest = (username, password, cb) => {
   setTimeout(() => {
     $.ajax({
@@ -48,22 +62,11 @@ const pretendRequest = (username, password, cb) => {
     })
     .done((userInfo)=>{
       console.log('from auth.js', userInfo)
-      const channelMembers = _.find(userInfo.Users.Chatrooms, (channel) => {
-        console.log(channel.Users)
-        return channel.Users
-      })
-      store.dispatch({
-        type: 'AUTH_USER',
-        userName: userInfo.Users.username,
-        userId: userInfo.Users.id,
-        userChatrooms: userInfo.Users.Chatrooms,
-        userTeam: userInfo.Team,
-        messages: userInfo.Messages,
-
-      })
+      initialInfo(userInfo)
       cb({
         authenticated: true,
-        token: Math.random().toString(36).substring(7)
+        token: Math.random().toString(36).substring(7),
+        userInfo: JSON.stringify(userInfo)
       })
     })
     .catch(()=> cb({ authenticated: false }))

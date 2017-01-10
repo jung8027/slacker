@@ -1,14 +1,21 @@
 import {USER_LOGIN} from './loginActions';
 
-const INTIAL_STATE = {
-  userName: null, userChatrooms: null, userTeams: null
+const INITIAL_STATE = {
+  userName: [], userId: null, userChatrooms: null, userTeams: null, messages:null, channelMembers:null,
 };
 
-export default function(state = INTIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
   switch(action.type){
     case 'AUTH_USER':
-      // let key = Object.keys(action)[1]
-      return Object.assign({}, state, {userName: action.userName}, {userTeams: action.userTeams}, {userChatrooms: action.userChatrooms});
+      console.log(action)
+      const output = Object.assign({}, state)
+      output.userName = action.userName;
+      output.userId = action.userId;
+      output.userTeam = action.userTeam;
+      output.userChatrooms = action.userChatrooms;
+      output.messages = action.messages;
+      output.channelMembers = action.channelMembers;
+      return output
     default: 
       return state
   }
