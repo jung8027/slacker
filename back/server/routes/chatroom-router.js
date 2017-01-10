@@ -34,14 +34,22 @@ const getTeamChatrooms = (req,res)=>{
 
 // should populate user list of selected chatroom and their messages
 const getSingleChat = (req,res)=>{
-	Chatroom.findAll({
-		where: {name: req.params.chatname},
-		include:
-			[{model:User, 
-      		include: 
-      			[{model: Message, limit: 10}],
-      		order: [['createdAt', 'DESC']],
-        	attributes: {exclude: ['password']}}]
+	Chatroom.findById(req.params.chatId, {
+    include: [
+      {
+        model: User,
+        attributes: ['username', 'id'],
+
+        //remove infomation about the jointable
+        joinTableAttributes: []
+      },
+      {
+        model: Message,
+        limit: 10,
+        order: [['createdAt', 'DESC']],
+        joinTableAttributes: []
+      }
+    ]
 	}).then((data)=>res.send(data))
 };
 
@@ -58,11 +66,13 @@ const getSingleChat = (req,res)=>{
 // router.route('/')
 // 	.get(getAllChats)
 
+
+//api/chatroom/
 router.route('/:teamname')
 	.get(getTeamChatrooms)
 	.post(createChat)
 
-router.route('/:teamname/:chatname')
+router.route('/:teamId/:chatId')
 	.get(getSingleChat)
 	// .get(deleteChatroom)
 

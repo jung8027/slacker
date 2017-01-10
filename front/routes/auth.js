@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import store from '../store/store.js'
+import store from '../store/store.js';
+import {socket} from '../socket'
 
 module.exports = {
   login(username, password, cb) {
@@ -36,18 +37,8 @@ module.exports = {
 
 }
 const initialInfo = (userInfo) => {
-  const channelMembers = _.find(userInfo.Users[0].Chatrooms, (channel) => {
-    return channel.Users.length > 0
-  })
-  store.dispatch({
-    type: 'AUTH_USER',
-    userName: userInfo.Users[0].username,
-    userId: userInfo.Users[0].id,
-    userChatrooms: userInfo.Users[0].Chatrooms,
-    userTeam: userInfo.Users[0].Teams,
-    messages: userInfo.Messages,
-    channelMembers
-  })
+
+
 }
 const pretendRequest = (username, password, cb) => {
   setTimeout(() => {
@@ -62,7 +53,21 @@ const pretendRequest = (username, password, cb) => {
     })
     .done((userInfo)=>{
       console.log('from auth.js', userInfo)
-      initialInfo(userInfo)
+      
+
+      //join socket to chat rooms based off the infomation we receive in the database
+      socket.emit('join-rooms', _.map(userInfo.userChatrooms, room => (room.name)))
+      
+      //send out infomation about the current channel the user is in
+      $.ajax({
+        url: `api/${userInfo.user.currentTeam}/${userInfo.user.currentTeam}`,
+        type: 'GET',
+      })
+      .done(channelInfo => {
+        console.log(channelInfo)
+      })
+
+      //create token for user authentication for other react-router routes
       cb({
         authenticated: true,
         token: Math.random().toString(36).substring(7),
