@@ -23,7 +23,7 @@ const App = React.createClass({
         <section className="team_list">{teamList}</section>
         <section className="channel_list">{channel}</section>
         <section className="chat_view">{chat}</section>
-        <section className="user_list">{user}</section>
+        <section className="users_list">{usersList}</section>
         <Link to='/'><button onClick={()=>auth.logout()}>Log Out</button></Link>
 
       </div>
