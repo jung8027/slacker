@@ -33,8 +33,10 @@ const getTeamChatrooms = (req,res)=>{
 };
 
 // should populate user list of selected chatroom and their messages
+
 const getSingleChat = (req,res)=>{
-	Chatroom.findById(req.params.chatId, {
+	Chatroom.findOne({
+	where: {name: req.params.chatname},
     include: [
       {
         model: User,
@@ -42,22 +44,16 @@ const getSingleChat = (req,res)=>{
 
         //remove infomation about the jointable
         through: {
-          where: {
-            ChatroomId: 1
-          },
-        attributes: [{exclude: ["User_Chat"]}]
-
-        }
+        	attributes: []
+   		}
       },
       {
-        model: Message,
-        include: [{model: User}],
-        limit: 10,
+        model: Message, 
+        limit:10,
         order: [['createdAt', 'DESC']],
-        attributes: ['User_Chat'],
-        joinTableAttributes: []
-      }
-    ]
+        //exclude only accepts one parameter, find out if more can be done.
+        attributes: { exclude: ['updatedAt']}
+      }]
 	}).then((data)=>res.send(data))
 };
 
@@ -74,13 +70,11 @@ const getSingleChat = (req,res)=>{
 // router.route('/')
 // 	.get(getAllChats)
 
-
-//api/chatroom/
 router.route('/:teamname')
 	.get(getTeamChatrooms)
 	.post(createChat)
 
-router.route('/:teamId/:chatId')
+router.route('/:teamname/:chatname')
 	.get(getSingleChat)
 	// .get(deleteChatroom)
 
