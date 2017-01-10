@@ -47,6 +47,7 @@ const getSingleChat = (req,res)=>{
         model: Message,
         limit: 10,
         order: [['createdAt', 'DESC']],
+        attributes: ['User_Chat'],
         joinTableAttributes: []
       }
     ]
