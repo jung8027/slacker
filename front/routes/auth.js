@@ -47,19 +47,17 @@ const pretendRequest = (username, password, cb) => {
         }
     })
     .done((userInfo)=>{
-      console.log('from auth.js', userInfo)
+      console.log('from auth.js route', userInfo)
       const channelMembers = _.find(userInfo.Users.Chatrooms, (channel) => {
         console.log(channel.Users)
         return channel.Users
       })
       store.dispatch({
         type: 'AUTH_USER',
-        userName: userInfo.Users.username,
+        userName: userInfo.Users[0].username,
         userId: userInfo.Users.id,
-        userChatrooms: userInfo.Users.Chatrooms,
-        userTeam: userInfo.Team,
-        messages: userInfo.Messages,
-
+        userChatrooms: userInfo.Users[0].Chatrooms,
+        userTeam: userInfo.Users[0].Teams
       })
       cb({
         authenticated: true,

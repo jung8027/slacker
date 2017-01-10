@@ -8,11 +8,13 @@ const App = React.createClass({
   componentDidMount(){
     if(localStorage.userInfo){
       let userInfo = JSON.parse(localStorage.userInfo)
+      console.log('token recall', userInfo)
       store.dispatch({
         type: 'AUTH_USER',
-        userName: userInfo.username,
-        userChatrooms: userInfo.Chatrooms,
-        userTeams: userInfo.Teams
+        userId: userInfo.Users[0].id,
+        userName: userInfo.Users[0].username,
+        userChatrooms: userInfo.Users[0].Chatrooms,
+        userTeams: userInfo.Users[0].Teams
       })
     }
   },
@@ -24,7 +26,7 @@ const App = React.createClass({
         <section className="channel_list">{channel}</section>
         <section className="chat_view">{chat}</section>
         <section className="user_list">{user}</section>
-        <Link to='/'><button onClick={()=>auth.logout()}>Log Out</button></Link>
+        <Link to='/'><button onClick={auth.logout}>Log Out</button></Link>
 
       </div>
     )
