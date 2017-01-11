@@ -1,5 +1,4 @@
 import React from 'react';
-import auth from '../../routes/auth';
 import {Link} from 'react-router';
 import store from '../../store/store'
 import NavBar from './NavBar'
@@ -27,7 +26,7 @@ const App = React.createClass({
           <NavBar {...this.props}/>
           <div className="main_view">
             <section className="chat_view">{chat}</section>
-            <section className="users_list">{user}</section>
+            <section className="users_list">{usersList}</section>
           </div>
         </div>
       </div>

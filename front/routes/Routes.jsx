@@ -1,10 +1,9 @@
 import React from 'react';
 import $ from 'jquery'
 import {Route, IndexRoute} from 'react-router';
-import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserListContainer} from '../features';
+import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UsersListContainer} from '../features';
 import auth from './auth.js';
 import store from '../store/store';
-
 
 const redirectToLogin = (nextState, replace) => {
   if(!auth.loggedIn()){
@@ -23,7 +22,12 @@ const getChannelInfo = (nextState, replace) => {
     console.log(channelData)
     store.dispatch({
       type: 'CHANNEL_INFO',
-
+      channel: {
+        id: channelData.id, 
+        name:channelData.name
+      },
+      users: channelData.Users,
+      messages: channelData.Messages
     })
   })
 }
@@ -50,4 +54,3 @@ export default (
     </Route>
   </Route>
 );
-

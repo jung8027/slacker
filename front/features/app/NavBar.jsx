@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router'
+import {Link} from 'react-router';
+import auth from '../../routes/auth';
 
 const NavBar = props => {
   return (
