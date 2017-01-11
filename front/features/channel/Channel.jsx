@@ -1,17 +1,22 @@
 import React from 'react';
-import store from '../../store/store'
+import {Link} from 'react-router';
+import store from '../../store/store';
 
 const Channel = (props)=> {
-   // store.subscribe(() => {
-    //   this.setState({
-    //     userInfo: store.getState().userInfo;
-    //   });
-    // });
-    console.log(props.users)
+  console.log(props)
+  // enterChat() {
+  //   <Link
+  //   to='/'></Link>
+  // }
     // Object.keys(props).map((k)=>console.log('from channel', k, props[k]))
     return (
       <div>
-      channel
+        <ul>
+        {props.userChannels.users?
+          props.userChannels.users.map((a,key)=>{
+          return <li key={key}>{a.username}</li>})
+          :false}
+        </ul>
       </div>
     );
 }
