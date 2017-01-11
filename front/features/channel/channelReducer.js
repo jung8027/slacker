@@ -1,7 +1,7 @@
-import {UPDATE_CHANNEL} from './channelActions'
+// import {UPDATE_CHANNEL} from './channelActions'
 
 const INITIAL_STATE = 
-{users: null, channel: null, messages:null};
+{channels: null, users: null, channel: null, messages:null};
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type){
