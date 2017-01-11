@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery'
 import {Route, IndexRoute} from 'react-router';
-import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserContainer} from '../features';
+import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserListContainer} from '../features';
 import auth from './auth.js';
 import store from '../store/store';
 
@@ -43,7 +43,7 @@ export default (
             channel: ChannelContainer, 
             chat: ChatViewContainer, 
             teamList: TeamListContainer, 
-            user: UserContainer
+            usersList: UsersListContainer
           }} 
         />
       </Route>

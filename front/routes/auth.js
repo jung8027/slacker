@@ -59,7 +59,7 @@ const pretendRequest = (username, password, cb) => {
 
       //find the current team the user is on and and get the name of that team so we can use it in the url 
       const teamObj = _.find(userInfo.teams, team => team.id === userInfo.user.currentTeam)
-
+        console.log(teamObj)
       //create token for user authentication for other react-router routes
       cb({
         authenticated: true,

@@ -4,15 +4,18 @@
 //convert this to redux
 
 import React from 'react';
-import UserProfile from '../userProfile/UserProfile';
+//import UserProfile from '../userProfile/UserProfile';
 
 const UsersList = (props) => {
   console.log(props)
   return (
     <div>
       {
-        props.users ? props.users.map((user, index) =>(
-          <UserProfile key={index} user={user} />
+        // props.users ? props.users.map((user, index) =>(
+        //   <UserProfile key={index} user={user} />
+        //)): null
+        props.usersList ? props.usersList.map((usersList, index) =>(
+          <li key={index} user={userList} />
         )): null
       }
     </div>
