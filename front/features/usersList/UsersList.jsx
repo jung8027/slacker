@@ -17,7 +17,7 @@ const UserList = (props)=> {
         <ul>
         {props.userChannels.users?
           props.userChannels.users.map((a,key)=>{
-          return <Link <li key={key}>{a.username}</li>})
+          return  <li key={key}>{a.username}</li>})
           :false}
         </ul>
       </section>
