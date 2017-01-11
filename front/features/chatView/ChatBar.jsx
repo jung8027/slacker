@@ -45,8 +45,8 @@ export default class ChatBar extends React.Component{
   }
 
   sendMessage(contentBlock){
-    const {input, channel} = this.props;
-    socket.emit('message', {room: "C4Q3.1", msg:input, userId: 1, chatroomId: 1})
+    const {input, channel, user} = this.props;
+    socket.emit('message', {room: channel.name, msg:input, userId: user.id, chatroomId: channel.id})
   };
 
   render() {

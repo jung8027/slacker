@@ -8,15 +8,22 @@ const ChatView = React.createClass({
   componentDidMount(){
 
     socket.on("received-message", message => {
-      console.log(message)
-      this.props.updateSocketMessages(message)
+      if(this.props.params.channel === message.Chatroom.name){
+        this.props.updateSocketMessages(message)
+      } else {
+        console.log("no message")
+      }
     });
   },
   render() {
-    const {socketMessages} = this.props;
+    const {chatroomMessages,socketMessages} = this.props;
     return (
       <div>
         <div>CHAT VIEW</div>
+        {chatroomMessages && _.map(chatroomMessages, (msg, index) => (
+            <Message key ={index} msg={msg} />
+          )
+        )}
         {socketMessages && _.map(socketMessages, (msg, index) => (
             <Message key ={index} msg={msg} />
           )

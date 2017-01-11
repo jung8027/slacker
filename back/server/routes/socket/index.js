@@ -1,9 +1,10 @@
 
 module.exports = ((app,io)=>{ 
   const _ = require('lodash'),
-        Message = require('../../../db/models').Message;
-        User = require('../../../db/models').User;
-        debug = require('debug')('SOCKET')
+        Chatroom = require('../../../db/models').Chatroom,
+        Message = require('../../../db/models').Message,
+        User = require('../../../db/models').User,
+        debug = require('debug')('SOCKET');
 
   io.on('connection', socket => {
     socket.on('connection-name',function(user){
@@ -28,10 +29,16 @@ module.exports = ((app,io)=>{
       })
       .then(message => {
         return Message.findById(message.id,{
-          include: [{
-            model: User,
-            attributes: ['username']
-          }]
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            },
+            {
+              model: Chatroom,
+              attributes: ['name']
+            }
+          ]
         })
       })
       .then(message => {
