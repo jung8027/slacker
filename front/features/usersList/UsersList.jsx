@@ -7,7 +7,7 @@ import React from 'react';
 //import UserProfile from '../userProfile/UserProfile';
 
 const UsersList = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div>
       {

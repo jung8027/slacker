@@ -7,3 +7,10 @@ export const inputAction = input => ({
   type: UPDATE_CHATBAR, 
   input
 })
+
+export const updateSocketMessages = msg => (
+  {
+    type: UPDATE_MESSAGES,
+    msg,
+  }
+)

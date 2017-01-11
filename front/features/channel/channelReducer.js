@@ -7,7 +7,7 @@ export default function(state = INITIAL_STATE, action) {
   switch(action.type){
   	case 'CHANNEL_INFO':
   	  const output = Object.assign({}, state)
-      output.channel = action.channels;
+      output.channel = action.channel;
       output.users = action.users;
       output.messages = action.messages;
       return output

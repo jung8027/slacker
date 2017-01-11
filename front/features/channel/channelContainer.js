@@ -3,7 +3,7 @@ import Channel from './Channel'
 
 
 const mapStateToProps = state => {
-	console.log(state)
+	// console.log(state)
 	return{
 		// userChannels: state.login.userChatrooms
 }}

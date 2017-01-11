@@ -1,20 +1,23 @@
 import React from 'react';
 import {Link} from 'react-router';
-import store from '../../store/store'
-import NavBar from './NavBar'
+import store from '../../store/store';
+import {socket} from '../../socket'
+import NavBar from './NavBar';
+
 
 const App = React.createClass({
   componentDidMount(){
     if(localStorage.userInfo){
       let userInfo = JSON.parse(localStorage.userInfo)
-      //send infomation about the user to the store for the app component usage
-      store.dispatch({
-        type: 'AUTH_USER',
-        user: userInfo.user,
-        userTeams: userInfo.teams,
-        userChannels: userInfo.chatrooms,
-      })
+
+      //send infomation about the user to the store everytime a refresh takes place
+      this.props.updateUserInfo(userInfo.user, userInfo.teams,userInfo.chatrooms)
+      
+      //join socket to chat rooms based off the infomation we receive in the database
+      console.log(userInfo)
+      socket.emit('join-rooms', _.map(userInfo.chatrooms, room => (room.name)))
     }
+
   },
   render() {
     const {channel, usersList, chat, teamList} = this.props
