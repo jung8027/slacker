@@ -53,23 +53,15 @@ const pretendRequest = (username, password, cb) => {
         }
     })
     .done((userInfo)=>{
-      console.log('from auth.js', userInfo)
 
       //join socket to chat rooms based off the infomation we receive in the database
       socket.emit('join-rooms', _.map(userInfo.userChatrooms, room => (room.name)))
       
-      //send out infomation about the current channel the user is in
-      $.ajax({
-        url: `api/${userInfo.user.currentTeam}/${userInfo.user.currentTeam}`,
-        type: 'GET',
-      })
-      .done(channelInfo => {
-        console.log(channelInfo)
-      })
+      
 
       //find the current team the user is on and and get the name of that team so we can use it in the url 
       const teamObj = _.find(userInfo.teams, team => team.id === userInfo.user.currentTeam)
-
+        console.log(teamObj)
       //create token for user authentication for other react-router routes
       cb({
         authenticated: true,
