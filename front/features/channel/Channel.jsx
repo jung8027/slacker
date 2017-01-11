@@ -1,26 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router';
 import store from '../../store/store';
+// import {CHANNEL_UPDATE} from './channelActions';
 
 const Channel = (props)=> {
-  console.log(props)
-  // enterChat() {
-  //   <Link
-  //   to='/'></Link>
+  // enterChat()=>{
+  console.log(Object.keys(props))
   // }
     // Object.keys(props).map((k)=>console.log('from channel', k, props[k]))
     return (
       <div>
         <ul>
-        {props.userChannels.users?
-          props.userChannels.users.map((a,key)=>{
-          return <li key={key}>{a.username}</li>})
-          :false}
+
         </ul>
       </div>
     );
 }
-  
+          // onClick={this.enterChat.bind(this, a.username)}
 
 
 export default Channel;

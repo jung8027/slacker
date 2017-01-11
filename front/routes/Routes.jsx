@@ -12,6 +12,8 @@ const redirectToLogin = (nextState, replace) => {
     })
   }
 }
+
+
 const getChannelInfo = (nextState, replace) => {
   const {team, channel} = nextState.params
   $.ajax({
