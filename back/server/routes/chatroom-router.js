@@ -40,15 +40,16 @@ const getSingleChat = (req,res)=>{
     include: [
       {
         model: User,
-        attributes: ['username', 'id'],
+        attributes: ['username', 'id']
 
         //remove infomation about the jointable
-        through: {
-        	attributes: []
-   		}
       },
       {
-        model: Message, 
+        model: Message,
+        	include: [
+      	{
+        	model: User,
+        	attributes: ['username']}],
         limit:10,
         order: [['createdAt', 'DESC']],
         //exclude only accepts one parameter, find out if more can be done.
