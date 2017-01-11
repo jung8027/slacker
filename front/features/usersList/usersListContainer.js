@@ -7,4 +7,4 @@ const mapStateToProps = state => {
 		userChannels: state.channel
 }}
 
-export default connect(mapStateToProps)(UsersList)
+export default connect(mapStateToProps)(UsersList) 

@@ -1,21 +1,10 @@
-import $ from 'jquery';
 
-const GET_USER = 'get_user';
+export const GET_PROFILE = 'GET_PROFILE';
 
-export const getOneUser = (user) => (
-  {
-    type: GET_USER,
-    user
-  }
-)
-
-export const getUserAysnc = () => (dispatch) =>{
-  return $.ajax({
-    url: '/user/:username',
-    dataType: 'json',
-    type: 'GET'
-  })
-  .done(user => {
-    dispatch(getUser(user));
-  })
-}
+ export const selectAction = selection => ({
+  type: GET_PROFILE, 
+  selection
+})
+ // .done(userProfile) => 
+ //    dispatch(userProfile);
+    
