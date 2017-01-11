@@ -16,34 +16,29 @@ const UsersList = React.createClass({
   },
   loadUsers(){
    console.log('loading users list')
+   var that = this
     $.ajax({
       url: "/api/users",
       type: "GET",
       //data: {username: that.props.users.username},
       success: function(data) {
-        console.log(data)
-        this.setState({userList: data.results}).bind(this)
+        //console.log(data)
+        that.setState({userList: JSON.parse(data)})
       }
     })
   },
   render(){
-  return (
-      <div>
-      <h1>usersList</h1>
-
-
-        {this.props.children
-          // props.users ? props.users.map((user, index) =>(
-          //   <UserProfile key={index} user={user} />
-          //)): null
-          //
-          // props.usersList ? props.usersList.map((usersList, index) =>(
-          //   <UserProfile key={index} user={userList} />
-          // )): null
-        }
-        
-      </div>
-    )
+  if(this.state.usersList) {
+      return(
+        <div>
+          {this.state.usersList.map(function(usersList, idx){
+            return (<UserProfile key={idx} usersList={usersList}/>)
+          })}
+        </div>
+      )
+    } else {
+      return (<div>Loading...</div>)
+    }
   }
 })
 
