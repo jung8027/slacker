@@ -1,21 +1,8 @@
-import $ from 'jquery';
 
-const GET_ALL_USERS = 'get_all_users';
+export const UPDATE_USERS = 'UPDATE_USERS';
 
-export const getAllUsers = (users) => (
-  {
-    type: GET_ALL_USERS,
-    usersList
-  }
-)
-
-export const getUsersAysnc = () => (dispatch) =>{
-  return $.ajax({
-    url: '/api/users',
-    dataType: 'json',
-    type: 'GET'
-  })
-  .done(users => {
-    dispatch(getAllUsers(usersList));
-  })
-}
+ export const selectAction = selection => ({
+  type: UPDATE_USERS, 
+  selection
+}).done(channelInfo) => 
+    dispatch(channelInfo);
