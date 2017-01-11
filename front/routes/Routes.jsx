@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import {App, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserContainer} from '../features';
+import {App, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UsersListContainer} from '../features';
 import auth from './auth.js'
 
 
@@ -27,7 +27,7 @@ export default (
             channel: ChannelContainer, 
             chat: ChatViewContainer, 
             teamList: TeamListContainer, 
-            user: UserContainer
+            usersList: UsersListContainer
           }} 
         />
       </Route>

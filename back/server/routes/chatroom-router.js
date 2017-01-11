@@ -33,15 +33,27 @@ const getTeamChatrooms = (req,res)=>{
 };
 
 // should populate user list of selected chatroom and their messages
+
 const getSingleChat = (req,res)=>{
-	Chatroom.findAll({
-		where: {name: req.params.chatname},
-		include:
-			[{model:User, 
-      		include: 
-      			[{model: Message, limit: 10}],
-      		order: [['createdAt', 'DESC']],
-        	attributes: {exclude: ['password']}}]
+	Chatroom.findOne({
+	where: {name: req.params.chatname},
+    include: [
+      {
+        model: User,
+        attributes: ['username', 'id'],
+
+        //remove infomation about the jointable
+        through: {
+        	attributes: []
+   		}
+      },
+      {
+        model: Message, 
+        limit:10,
+        order: [['createdAt', 'DESC']],
+        //exclude only accepts one parameter, find out if more can be done.
+        attributes: { exclude: ['updatedAt']}
+      }]
 	}).then((data)=>res.send(data))
 };
 

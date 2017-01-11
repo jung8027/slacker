@@ -9,10 +9,10 @@ const Login = React.createClass({
   },
   submitLoginInfo() {  
     event.preventDefault();
-    auth.login(this.state.username, this.state.password, (loggedIn) => {
-      console.log('loggedin?', loggedIn);
+    auth.login(this.state.username, this.state.password, (loggedIn, teamName) => {
+      console.log('loggedin?', teamName);
       if (loggedIn){
-        this.props.router.push("/C4Q3.1/C4Q3.1")
+        this.props.router.push(`/${teamName}/${teamName}`)
         socket.emit("join-rooms", ["test", "test2"])
       } else {
         this.props.router.replace('/')
