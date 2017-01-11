@@ -1,7 +1,9 @@
 import React from 'react';
+import $ from 'jquery'
 import {Route, IndexRoute} from 'react-router';
-import {App, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserContainer} from '../features';
-import auth from './auth.js'
+import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UserContainer} from '../features';
+import auth from './auth.js';
+import store from '../store/store';
 
 
 const redirectToLogin = (nextState, replace) => {
@@ -10,6 +12,20 @@ const redirectToLogin = (nextState, replace) => {
       pathname: '/',
     })
   }
+}
+const getChannelInfo = (nextState, replace) => {
+  const {team, channel} = nextState.params
+  $.ajax({
+    url: `/api/chatroom/${team}/${channel}`,
+    type: 'GET'
+  })
+  .done(channelData => {
+    console.log(channelData)
+    store.dispatch({
+      type: 'CHANNEL_INFO',
+
+    })
+  })
 }
 
 export default (
@@ -21,7 +37,7 @@ export default (
       </Route>
     </Route>
     <Route onEnter={redirectToLogin}>
-      <Route component={App}>
+      <Route onEnter={getChannelInfo} component={AppContainer}>
         <Route path="/:team/:channel" 
           components={{
             channel: ChannelContainer, 

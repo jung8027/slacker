@@ -2,6 +2,7 @@ import React from 'react';
 import auth from '../../routes/auth';
 import {Link} from 'react-router';
 import store from '../../store/store'
+import NavBar from './NavBar'
 
 const App = React.createClass({
   componentDidMount(){
@@ -22,10 +23,13 @@ const App = React.createClass({
       <div className="app">
         <section className="team_list">{teamList}</section>
         <section className="channel_list">{channel}</section>
-        <section className="chat_view">{chat}</section>
-        <section className="user_list">{user}</section>
-        <Link to='/'><button onClick={()=>auth.logout()}>Log Out</button></Link>
-
+        <div className="main">
+          <NavBar {...this.props}/>
+          <div className="main_view">
+            <section className="chat_view">{chat}</section>
+            <section className="users_list">{user}</section>
+          </div>
+        </div>
       </div>
     )
   }
