@@ -3,9 +3,9 @@ import {Link} from 'react-router';
 import store from '../../store/store';
 // import {CHANNEL_UPDATE} from './channelActions';
 
-
 const Channel = (props)=> {
   console.log(props)
+  // Object.keys(props.channels).map((a)=>console.log(props.channels[a]))
   // enterChat()=>{
   // console.log(this)
   // }
@@ -13,6 +13,7 @@ const Channel = (props)=> {
     return (
       <div>
         <ul>
+        {props.channels?props.channels.map((a,idx)=><li key={idx}>{a.name}</li>):"Loading..."}
         </ul>
       </div>
     );
