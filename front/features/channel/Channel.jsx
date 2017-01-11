@@ -7,6 +7,7 @@ const Channel = (props)=> {
     //     userInfo: store.getState().userInfo;
     //   });
     // });
+    console.log(props)
     let channels = props.userChannels
     return (
       <div>
