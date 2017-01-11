@@ -1,4 +1,4 @@
-import {UPDATE_CHANNEL} from './channelActions'
+// import {UPDATE_CHANNEL} from './channelActions'
 
 const INITIAL_STATE = 
 {users: null, channel: null, messages:null};

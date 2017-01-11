@@ -7,8 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       validate: {notEmpty: true}
     },
     password: {type: DataTypes.STRING, validate: {notEmpty: true}},
-    currentTeam: DataTypes.INTEGER
-  }, {
+    currentTeam: {type:DataTypes.INTEGER},
+    bio: {type:DataTypes.STRING(2000)}
+  }, 
+  {
     classMethods: {
       associate: function(models) {
         // associations can be defined here

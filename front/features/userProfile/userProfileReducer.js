@@ -1,15 +1,16 @@
-import {GET_USER} from './userProfileActions';
 
-const initialState = {user: ""};
+const INITIAL_STATE = {
+  user: null
+};
 
-const reducer = (state = initialState, action) => {
+export default function(state = INITIAL_STATE, action) {
   switch(action.type){
-    case GET_USER:
-      console.log('Getting user');
-      break;
-    default:
+      case 'GET_PROFILE':
+  	  const output = Object.assign({}, state)
+      output.user = action.username;
+      output.bio = action.bio;
+      return output
+    default: 
       return state
   }
-}
-
-export default reducer;
+} 
