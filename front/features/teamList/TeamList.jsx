@@ -6,7 +6,6 @@ const TeamList = props => {
   return (
     <div>
       {teams && teams.map((team,index) =>{
-        console.log(team)
         return <p className="team_img square" key={index}>{team.name[0] + team.name[1]}</p>
       }
       )}

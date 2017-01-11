@@ -19,7 +19,6 @@ const getChannelInfo = (nextState, replace) => {
     type: 'GET'
   })
   .done(channelData => {
-    console.log(channelData)
     store.dispatch({
       type: 'CHANNEL_INFO',
       channel: {

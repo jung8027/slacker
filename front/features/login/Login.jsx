@@ -13,7 +13,6 @@ const Login = React.createClass({
       console.log('loggedin?', teamName);
       if (loggedIn){
         this.props.router.push(`/${teamName}/${teamName}`)
-        socket.emit("join-rooms", ["test", "test2"])
       } else {
         this.props.router.replace('/')
       }
