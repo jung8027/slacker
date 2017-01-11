@@ -7,9 +7,9 @@ const db = require('../db/models').sequelize
 
 //data
 const users = [
-  {username: 'test1', password: 'pass1', currentTeam: 1},
-  {username: 'test2', password: 'pass2', currentTeam: 1},
-  {username: 'test3', password: 'pass3', currentTeam: 1},
+  {username: 'test1', password: 'pass1', currentTeam: 1, bio:"happy dev"},
+  {username: 'test2', password: 'pass2', currentTeam: 1, bio: 'human'},
+  {username: 'test3', password: 'pass3', currentTeam: 1, bio: 'life is ...'},
 ];
 const messages = [
   {msg: "This is the first message", UserId: 1},
@@ -35,6 +35,8 @@ const chatrooms = [
   {name: 'nate'},
   {name: 'resources'},
 ];
+
+
 
 // Team.sync({force: true})
 // .then(() => Chatroom.sync({force: true}))
