@@ -7,10 +7,11 @@ const Channel = (props)=> {
     //     userInfo: store.getState().userInfo;
     //   });
     // });
-    let channels = props.userChannels
+    console.log(props.users)
+    // Object.keys(props).map((k)=>console.log('from channel', k, props[k]))
     return (
       <div>
-      hi
+      channel
       </div>
     );
 }
