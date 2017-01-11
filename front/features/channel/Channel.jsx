@@ -3,9 +3,9 @@ import {Link} from 'react-router';
 import store from '../../store/store';
 // import {CHANNEL_UPDATE} from './channelActions';
 
-const Channel = (props)=> {
+const Channel = (props) => {
   // enterChat()=>{
-  console.log(Object.keys(props))
+  console.log(props)
   // }
     // Object.keys(props).map((k)=>console.log('from channel', k, props[k]))
     return (

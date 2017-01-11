@@ -2,12 +2,8 @@ import {connect} from 'react-redux'
 import Channel from './Channel'
 
 
-const mapStateToProps = state => {
-	console.log(state)
-	return
-	{
-  	userChatrooms: state.app
-  	}
-}
+const mapStateToProps = state => ({
+  	channels: state.app.chatrooms
+})
 
 export default connect(mapStateToProps)(Channel)

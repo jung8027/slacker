@@ -65,6 +65,14 @@ db.sync({force: true})
 .then(chatroom => {
   chatroom.addUsers([1])
 })
+.then(()=> {
+  return Team.findById(2)
+})
+.then(team => team.addUsers([1]))
+.then(()=> {
+  return Team.findById(3)
+})
+.then(team => team.addUsers([1]))
 
 
 module.exports = {

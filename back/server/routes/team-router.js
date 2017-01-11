@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Team = require('../../db/models').Team;
 const Chatroom = require('../../db/models').Chatroom;
 const User = require('../../db/models').User;
+const debug = require('debug')('SERVER_INDEX');
 
 //new chat room
 const createTeam = (req,res) => {
@@ -44,23 +45,39 @@ const killTeam = (req,res)=> (
 );
 
 const getTeamInfoBasedOnUser = (req, res) => {
-	Team.findById(req.params.teamId, {
-		include : [
-			{
-				model: User,
-				where: req.params.userId,
-				include: [{
+	User.update(
+		{ currentTeam: req.params.teamId},
+		{ where: {id: req.params.userId }}
+	)
+	.then(user => {
+		return User.findById(req.params.userId, {
+			attributes: ['id', 'username', 'password', 'currentTeam'],
+			include: [
+				{
 					model: Chatroom,
+					where: {
+						TeamId: req.params.teamId
+					},
+					attributes: ['id', 'name'],
 					through: {
-						where: {
-							UserId: req.params.userId
-						}
+						attributes: []
 					}
-				}]
-			}
-		]
+				},
+				{
+					model: Team,
+					where: {
+						id: 1
+					},
+					attributes: ['name', 'id'],
+					through: {
+						attributes: []
+					}
+				}
+			]
+		})
 	})
-	.then(team => res.send(team))
+	.then(userInfo => res.send(userInfo))
+	.catch(err => res.send(err))
 }
 
 //api/team
