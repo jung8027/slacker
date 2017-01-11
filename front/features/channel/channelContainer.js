@@ -3,9 +3,10 @@ import Channel from './Channel'
 
 
 const mapStateToProps = state => {
-	// console.log(state)
+	// Object.keys(userObj).map((k)=>console.log(userObj[k]))
+	console.log(state.channel)
 	return{
-		// userChannels: state.login.userChatrooms
+		userChannels: state.channel
 }}
 
 export default connect(mapStateToProps)(Channel)
