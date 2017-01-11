@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const Team = require('../../db/models').Team;
+const Chatroom = require('../../db/models').Chatroom;
+const User = require('../../db/models').User;
 
 //new chat room
 const createTeam = (req,res) => {
@@ -41,9 +43,33 @@ const killTeam = (req,res)=> (
 		res.send('Team '+chatId+' deleted!'))
 );
 
+const getTeamInfoBasedOnUser = (req, res) => {
+	Team.findById(req.params.teamId, {
+		include : [
+			{
+				model: User,
+				where: req.params.userId,
+				include: [{
+					model: Chatroom,
+					through: {
+						where: {
+							UserId: req.params.userId
+						}
+					}
+				}]
+			}
+		]
+	})
+	.then(team => res.send(team))
+}
+
+//api/team
 router.route('/')
 	.post(createTeam)
 	.get(getAllTeams)
+
+router.route('/:teamId/:userId')
+	.get(getTeamInfoBasedOnUser)
 
 router.route('/:name')
 	.get(getSingleTeam)

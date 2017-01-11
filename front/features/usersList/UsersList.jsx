@@ -9,7 +9,7 @@ import React from 'react';
 const UsersList = (props) => {
   // console.log(props)
   return (
-    <div>
+    <section className="users_list">
       {
         // props.users ? props.users.map((user, index) =>(
         //   <UserProfile key={index} user={user} />
@@ -18,7 +18,7 @@ const UsersList = (props) => {
           <li key={index} user={userList} />
         )): null
       }
-    </div>
+    </section>
   )
 }
 

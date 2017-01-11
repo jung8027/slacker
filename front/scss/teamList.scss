@@ -1,6 +1,8 @@
 @import '_colors';
 
 .team_list {
-  border: 1px solid blue;
   width: 5vw;
+  background-color: $darkPurple;
+  display: flex;
+  justify-content: center;
 }

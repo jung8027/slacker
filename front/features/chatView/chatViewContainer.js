@@ -12,10 +12,10 @@ const mapDispatchToProps = dispatch => (
 
 const mapStateToProps = state => ({
   channel: state.channel.channel,
-  chatroomMessages: state.channel.chatroomMessages,
+  chatroomMessages: state.channel.messages,
   input: state.chatView.input,
   socketMessages: state.chatView.socketMessages,
-  user: state.app.user
+  user: state.app.user,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatView)

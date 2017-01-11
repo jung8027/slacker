@@ -23,13 +23,13 @@ const App = React.createClass({
     const {channel, usersList, chat, teamList} = this.props
     return (
       <div className="app">
-        <section className="team_list">{teamList}</section>
+        {teamList}
         <section className="channel_list">{channel}</section>
         <div className="main">
           <NavBar {...this.props}/>
           <div className="main_view">
-            <section className="chat_view">{chat}</section>
-            <section className="users_list">{usersList}</section>
+            {chat}
+            {usersList}
           </div>
         </div>
       </div>

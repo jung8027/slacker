@@ -1,6 +1,22 @@
 @import '_colors';
 
-.chat_view{
-  border: 1px solid red;
+.chat_view {
   width: 55vw;
+  display: flex;
+  flex-direction: column;
+
+  .view {
+    height: 80vh;
+  }
+
+  .chat_bar {
+    height: 10vh;
+
+    input {
+      border: 3px solid $darkGray;
+      border-radius: 15px;
+      width: 90%;
+      height: 90%;
+    }
+  }
 }

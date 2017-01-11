@@ -1,15 +1,27 @@
 import React from 'react';
-import store from '../../store/store'
+import $ from 'jquery'
+import store from '../../store/store';
 
 const TeamList = props => {
-  const {teams} = props
+  const {teams, user} = props;
+
+  const showTeam = teamId => {
+    $.ajax({
+      url: `/api/team/${teamId}/${user.id}`,
+      type: 'GET'
+    })
+    .done(data => {
+      console.log("team data", data)
+    })
+  };
+
   return (
-    <div>
+    <section className="team_list">
       {teams && teams.map((team,index) =>{
-        return <p className="team_img square" key={index}>{team.name[0] + team.name[1]}</p>
+        return <p onClick={()=>showTeam(team.id)} className="team_img square" key={index}>{team.name[0] + team.name[1]}</p>
       }
       )}
-    </div>
+    </section>
   )
 }
 
