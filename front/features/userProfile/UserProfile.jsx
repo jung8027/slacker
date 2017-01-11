@@ -1,32 +1,23 @@
-//Vanessa
-//one user should be displayed when the username from the users list is clicked
-//profile?
-
 import React from 'react';
-import $ from 'jquery';
+import {Link} from 'react-router';
+import store from '../../store/store';
 
-const UserProfile = React.createClass({ 
-  getInitialState(){
-  	return({user: null})
-  },
-  getUser(){
-  	//var that = this
-    $.ajax({
-      url: "/api/users/:username",
-      type: "GET",
-      data: {username: that.props.users.username},
-      success: function(data) {
-        console.log(data)
-      }
-    })
-  },
-  render() {
+const UserProfile = (props)=> {
     return (
-      <div>
-        <button onClick={this.getUser}>Click me</button>
-      </div>
-    )
-  }
-});
+      <section className="users_list">
+        <ul>
+        {props.userChannels.users?
+          props.userChannels.users.map((a,key)=>{
+          return <li key={key}>{a.username}{a.bio}</li>})
+          :false}
+        </ul>
+      </section>
 
-export default UserProfile;
+      /*<div>
+        {props.userChannels.}
+      </div>*/
+    );
+}
+
+export default UserProfile; 
+ 
