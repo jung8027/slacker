@@ -1,4 +1,4 @@
-  import $ from 'jquery'
+import $ from 'jquery';
 
 const GET_USER = 'get_user';
 
@@ -11,7 +11,7 @@ export const getOneUser = (user) => (
 
 export const getUserAysnc = () => (dispatch) =>{
   return $.ajax({
-    url: '/users/:id',
+    url: '/user/:username',
     dataType: 'json',
     type: 'GET'
   })

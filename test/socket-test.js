@@ -57,11 +57,13 @@ describe("Socket Chat Server",function(){
     const message = "hello to channel 1";
     const channels = ["channel1", "channel2", "channel3"] 
     let socket1, socket2, socket3;
+    let messages = 0;
 
     const checkMessage = client => {
-      client.on('received-message', msg => { 
-        expect(msg).equal(message);
-        client.emit('add-received-message')
+      client.on('received-message', payload => { 
+        expect(payload.msg).equal(message);
+        expect(payload.ChatroomId).equal(1);
+        messages++
       });
     }  
 
@@ -89,16 +91,16 @@ describe("Socket Chat Server",function(){
           socket3.emit('join-rooms', channels.slice(1))
           
           //send out messages to specific rooms
-          socket1.emit('message', {room: channels[0], msg: message})
+          socket1.emit('message', {room: channels[0], msg: message, userId: 1, chatroomId: 1})
 
           //this listener is to make sure that the total amount of messages recieved in the room
-          socket1.on('received-message-total', total =>{
-            expect(total).equal(2)
+          setTimeout(() =>{
+            expect(messages).equal(2)
             socket1.disconnect()
             socket2.disconnect()
             socket3.disconnect();
             done();
-          })
+          }, 500)
         }) 
 
       })

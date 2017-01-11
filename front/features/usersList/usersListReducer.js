@@ -1,4 +1,4 @@
-import {GET_ALL_USERS} from './usersActions';
+import {GET_ALL_USERS} from './usersListActions';
 
 const initialState = {users: []};
 

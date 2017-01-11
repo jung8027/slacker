@@ -1,3 +1,8 @@
+import $ from 'jquery';
+import _ from 'lodash';
+import store from '../store/store.js';
+import {socket} from '../socket';
+
 module.exports = {
   login(username, password, cb) {
     cb = arguments[arguments.length - 1]
@@ -7,10 +12,12 @@ module.exports = {
       return
     }
     pretendRequest(username, password, (res) => {
+      console.log(res)
       if (res.authenticated) {
         localStorage.token = res.token
-        if (cb) cb(true)
-        this.onChange(true)
+        localStorage.userInfo = res.userInfo
+        if (cb) cb(true, res.teamName)
+        this.onChange(true, res.teamName)
       } else {
         if (cb) cb(false)
         this.onChange(false)
@@ -21,19 +28,44 @@ module.exports = {
   loggedIn() {
     return !!localStorage.token
   },
-  onChange() {}
-}
 
+  logout() {
+    delete localStorage.token
+    delete localStorage.userInfo
+  },
+
+  onChange() {},
+
+}
+const initialInfo = (userInfo) => {
+
+
+}
 const pretendRequest = (username, password, cb) => {
   setTimeout(() => {
-    console.log(username)
-    // if (username === '' && pass === '') {
+    $.ajax({
+      url: '/api/login',
+      type: 'POST',
+      data: 
+        {
+          username: username,
+          password: password
+        }
+    })
+    .done((userInfo)=>{
+
+      //find the current team the user is on and and get the name of that team so we can use it in the url 
+      const teamObj = _.find(userInfo.teams, team => team.id === userInfo.user.currentTeam)
+
+      //create token for user authentication for other react-router routes
       cb({
         authenticated: true,
-        token: Math.random().toString(36).substring(7)
+        teamName: teamObj.name, 
+        token: Math.random().toString(36).substring(7),
+        userInfo: JSON.stringify(userInfo)
       })
-    // } else {
-    //   cb({ authenticated: false })
-    // }
+    })
+    .catch(()=> cb({ authenticated: false }))
   }, 0)
 }
+

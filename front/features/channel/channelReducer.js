@@ -1,12 +1,18 @@
+// import {UPDATE_CHANNEL} from './channelActions'
 
+const INITIAL_STATE = 
+{channel:null, users: null, messages:null};
 
-const INTIAL_STATE = {
-
-};
-
-export default function(state = INTIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
   switch(action.type){
+  	case 'CHANNEL_INFO':
+  	  const output = Object.assign({}, state)
+      output.channel = action.channel;
+      output.users = action.users;
+      output.messages = action.messages;
+      return output
     default: 
+    // 	return 
       return state
   }
 }

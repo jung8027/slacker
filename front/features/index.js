@@ -1,10 +1,11 @@
-import App from './app/App.jsx';
+import AppContainer from './app/appContainer';
 import ChannelContainer from './channel/channelContainer';
-import ChatBarContainer from './chatBar/chatBarContainer';
+import ChatViewContainer from './chatView/chatViewContainer';
 import JoinTeamContainer from './joinTeam/joinTeamContainer';
-import Landing from './landing/Landing.jsx';
+import Landing from './landing/Landing';
 import LoginContainer from './login/loginContainer';
-import UserContainer from './user/userContainer';
+import TeamListContainer from './teamList/teamListContainer';
+import UsersListContainer from './usersList/usersListContainer';
 
 
-export {App, ChannelContainer, ChatBarContainer, JoinTeamContainer, Landing, LoginContainer,  UserContainer};
+export {AppContainer, ChannelContainer, ChatViewContainer, JoinTeamContainer, Landing, LoginContainer, TeamListContainer, UsersListContainer};
