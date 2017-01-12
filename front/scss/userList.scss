@@ -5,6 +5,8 @@
   	border: 3px solid $darkGray;
   	border-radius: 15px;
   	width: 20vw;
+  	overflow-y:auto;
+  	padding: 15px;
 }
 
 .users_list ul{
@@ -27,6 +29,9 @@
 	margin: 15px;
 	text-decoration: none;
 	color: $darkGray;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
 .users_list button{
