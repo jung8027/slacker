@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery'
 import {Route, IndexRoute} from 'react-router';
-import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UsersListContainer} from '../features';
+import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UsersListContainer, UserProfileContainer} from '../features';
 import auth from './auth.js';
 import store from '../store/store';
 
@@ -31,7 +31,7 @@ const getChannelInfo = (nextState, replace) => {
       messages: channelData.Messages
     })
   })
-}
+} 
 
 export default (
   <Route>
@@ -48,9 +48,11 @@ export default (
             channel: ChannelContainer, 
             chat: ChatViewContainer, 
             teamList: TeamListContainer, 
-            usersList: UsersListContainer
+            usersList: UsersListContainer,
+            userProfile: UserProfileContainer
           }} 
         />
+
       </Route>
     </Route>
   </Route>
