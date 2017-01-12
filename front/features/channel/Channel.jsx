@@ -1,13 +1,14 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
+// import {Link} from 'react-router';
 import store from '../../store/store';
-// import {CHANNEL_UPDATE} from './channelActions';
+import {getChannel} from './channelActions';
 
 
 const Channel = (props)=> {
 
-  const enterChat=(event)=>{
-    browserHistory.push(`${event}`)
+  const enterChat=(channelname)=>{
+    props.router.replace(`/${props.params.team}/${channelname}`)
+    getChannel(props.params.team,channelname)
   }
 
   return (
@@ -15,7 +16,7 @@ const Channel = (props)=> {
       <ul>
       {props.channels?
         props.channels.map((a,idx)=>
-        <li onClick={enterChat.bind(this,a.name)} key={idx}>{a.name}</li>):
+        <li onClick={()=>enterChat(a.name)} key={idx}>{a.name}</li>):
         "Loading..."}
       </ul>
     </div>

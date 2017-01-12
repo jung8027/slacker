@@ -37,7 +37,7 @@ const TeamList = props => {
       const viewingChannel = _.find(Chatrooms, chatroom => (
           chatroom.name === viewingTeam.name
       ))
-      console.log(viewingChannel)
+      // console.log(viewingChannel)
       getChannel(viewingTeam.name, viewingChannel.name)
     })
   };

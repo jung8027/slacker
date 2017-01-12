@@ -15,16 +15,16 @@ const redirectToLogin = (nextState, replace) => {
 
 
 const getChannelInfo = (nextState, replace) => {
-  const {team, channel} = nextState.params
+  const {teamname, channelname} = nextState.params
   $.ajax({
-    url: `/api/chatroom/${team}/${channel}`,
+    url: `/api/chatroom/${teamname}/${channelname}`,
     type: 'GET'
   })
   .done(channelData => {
     store.dispatch({
       type: 'CHANNEL_INFO',
       channel: {
-        id: channelData.id, 
+        id: channelData.id,
         name:channelData.name
       },
       users: channelData.Users,
