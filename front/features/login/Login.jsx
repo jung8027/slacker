@@ -5,7 +5,7 @@ import {socket} from '../../socket'
 
 const Login = React.createClass({
   getInitialState() {
-    return {username: 'test1', password: 'pass1'};
+    return {username: 'overAchiever', password: 'password123'};
   },
   submitLoginInfo() {  
     event.preventDefault();
