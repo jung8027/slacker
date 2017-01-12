@@ -1,18 +1,44 @@
 import React from 'react';
-import $ from 'jquery'
+import $ from 'jquery';
+import _ from 'lodash';
 import store from '../../store/store';
+import {getChannel} from '../channel/channelActions'
 
 const TeamList = props => {
   const {teams, user} = props;
 
   const showTeam = teamId => {
-    console.log(teamId, user.id)
     $.ajax({
       url: `/api/team/${teamId}/${user.id}`,
       type: 'GET'
     })
-    .done(data => {
-      console.log("team data", data)
+    .done(userTeamData => {
+      const {id, username, password, currentTeam, Teams, Chatrooms} = userTeamData
+
+      //change incoming data key names to match initial token variables
+      const user = {id, username, password, currentTeam}
+      const data = {
+        user,
+        teams: Teams,
+        chatrooms: Chatrooms
+      }
+      localStorage.userInfo = JSON.stringify(data)
+
+      //update store infomation
+      props.updateUserInfo(user, Teams, Chatrooms)
+
+      //change the url to match current Team/Channel display infomation 
+      const viewingTeam = _.find(Teams, team => (
+        currentTeam === team.id
+      ))
+      props.router.replace(`/${viewingTeam.name}/${viewingTeam.name}`)
+
+      //send out request for specific channel infomation, second argument find the "general channel"
+      const viewingChannel = _.find(Chatrooms, chatroom => (
+          chatroom.name === viewingTeam.name
+      ))
+      console.log(viewingChannel)
+      getChannel(viewingTeam.name, viewingChannel.name)
     })
   };
 

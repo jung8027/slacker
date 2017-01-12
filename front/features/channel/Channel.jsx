@@ -4,7 +4,6 @@ import store from '../../store/store';
 // import {CHANNEL_UPDATE} from './channelActions';
 
 const Channel = (props)=> {
-  console.log(props)
   // Object.keys(props.channels).map((a)=>console.log(props.channels[a]))
   // enterChat()=>{
   // console.log(this)

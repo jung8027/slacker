@@ -88,15 +88,15 @@ const messages = [
   {msg: "LoL shhhh", UserId: 2, ChatroomId:9},
 ];
 const teams = [  
-  {name: 'Dreamers'},
   {name: 'Slackers'},
+  {name: 'Dreamers'},
 ];
 
 const chatrooms = [
   {name: 'Slackers'},
   {name: 'Food'},
   {name: 'Resources'},
-  {name: 'slackers'},
+  {name: 'Homework'},
   {name: 'Random'},
   {name: 'Dreamers'},
   {name: 'iOS-Rules'},

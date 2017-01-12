@@ -64,21 +64,17 @@ const getTeamInfoBasedOnUser = (req, res) => {
 						attributes: []
 					}
 				},
-				// {
-				// 	model: Team,
-				// 	where: {
-				// 		id: req.params.teamId
-				// 	},
-				// 	attributes: ['name', 'id'],
-				// 	through: {
-				// 		attributes: []
-				// 	}
-				// }
+				{
+					model: Team,
+					attributes: ['name', 'id'],
+					through: {
+						attributes: []
+					}
+				}
 			]
 		})
 	})
 	.then(userInfo => {
-		debug(userInfo)
 		res.send(userInfo)
 	})
 	.catch(err => res.send(err))
