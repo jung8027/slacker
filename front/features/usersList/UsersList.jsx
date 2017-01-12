@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import store from '../../store/store';
+import UserProfile from '../userProfile/UserProfile.jsx';
 
 const UserList = (props)=> {
     return (
@@ -17,7 +18,7 @@ const UserList = (props)=> {
         <ul>
         {props.userChannels.users?
           props.userChannels.users.map((a,key)=>{
-          return  <li key={key}>{a.username}</li>})
+          return  <li key={key}><Link to={UserProfile}>{a.username}</Link></li>})
           :false}
         </ul>
       </section>
