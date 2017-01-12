@@ -5,7 +5,7 @@ import {socket} from '../../socket'
 
 const Login = React.createClass({
   getInitialState() {
-    return {username: 'test1', password: 'pass1'};
+    return {username: 'overAchiever', password: 'password123'};
   },
   submitLoginInfo() {  
     event.preventDefault();
@@ -13,7 +13,6 @@ const Login = React.createClass({
       console.log('loggedin?', teamName);
       if (loggedIn){
         this.props.router.push(`/${teamName}/${teamName}`)
-        socket.emit("join-rooms", ["test", "test2"])
       } else {
         this.props.router.replace('/')
       }

@@ -1,16 +1,16 @@
-import {GET_ALL_USERS} from './usersListActions';
 
-const initialState = {users: []};
+const INITIAL_STATE = {
+  channel:null, 
+  users: null
+};
 
-const reducer = (state = initialState, action) => {
+export default function(state = INITIAL_STATE, action) {
   switch(action.type){
-    case GET_ALL_USERS:
-      console.log('Getting all users');
-      break;
-    default:
+      case 'UPDATE_USERS':
+  	  const output = Object.assign({}, state)
+      output.users = action.users;
+      return output
+    default: 
       return state
   }
-}
-
-export default reducer;
-
+} 

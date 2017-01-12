@@ -1,14 +1,11 @@
- import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from './userProfileActions';
+import {connect} from 'react-redux';
 import UserProfile from './UserProfile';
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(actions, dispatch)
-})
+const mapStateToProps = state => {
+	console.log('this is userprofile state',state)
+	return{
+		username: state.username,
+		bio: state.bio
+}}
 
-const mapStateToProps = (state) => ({
-  user: state.user.user, 
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(User)
+export default connect(mapStateToProps)(UserProfile) 

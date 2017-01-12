@@ -1,16 +1,21 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ChatView from './ChatView'
-import {inputAction} from './chatViewActions'
+import {inputAction, updateSocketMessages} from './chatViewActions'
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
     inputAction,
+    updateSocketMessages,
   }, dispatch)
 )
 
 const mapStateToProps = state => ({
-  input: state.chatView.input
+  channel: state.channel.channel,
+  chatroomMessages: state.channel.messages,
+  input: state.chatView.input,
+  socketMessages: state.chatView.socketMessages,
+  user: state.app.user,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatView)

@@ -1,6 +1,6 @@
 import $ from 'jquery'
 
-const USER_LOGIN = 'user_login';
+export const USER_LOGIN = 'user_login';
 
 export const getOneUser = (user) => (
   {
@@ -8,6 +8,7 @@ export const getOneUser = (user) => (
     user
   }
 )
+
 
 export const getUserAysnc = () => (dispatch) =>{
   return $.ajax({

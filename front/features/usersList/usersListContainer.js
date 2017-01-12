@@ -1,14 +1,10 @@
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from './usersListActions';
 import UsersList from './UsersList';
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(actions, dispatch)
-})
+const mapStateToProps = state => {
+	console.log('this is the state from the userlistconatiner', state.channel)
+	return{
+		userChannels: state.channel
+}}
 
-const mapStateToProps = (state) => ({
-  usersList: state.usersList 
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList)
+export default connect(mapStateToProps)(UsersList) 

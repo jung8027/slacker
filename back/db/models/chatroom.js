@@ -3,7 +3,6 @@ module.exports = function(sequelize, DataTypes) {
   var Chatroom = sequelize.define('Chatroom', {
     name: {
       type: DataTypes.STRING, 
-      unique: true
     }
   }, {
     classMethods: {

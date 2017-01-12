@@ -44,9 +44,12 @@ export default class ChatBar extends React.Component{
     ));
   }
 
-  sendMessage(contentBlock){
-    const {input, channel} = this.props;
-    socket.emit('message', {room: channel, msg:input, UserId: 1, ChatroomId: 1, username: "Slackers"})
+  sendMessage(event){
+    const {input, channel, user, inputAction} = this.props;
+    if(event.keyCode == 13){
+      inputAction("")
+      socket.emit('message', {room: channel.name, msg:input, userId: user.id, chatroomId: channel.id})
+    }
   };
 
   render() {
@@ -54,9 +57,9 @@ export default class ChatBar extends React.Component{
       <div className="chat_bar">
         <input 
           type='text'
+          onKeyUp={this.sendMessage.bind(this)}
           onChange={this.handleChange.bind(this)}
         />
-        <button onClick={()=> this.sendMessage(this.props.input)}>Send</button>
         {/*<h1>Draft.js Editor</h1>
         <button onClick={this._onBoldClick.bind(this)}>Bold</button>
         <div style={styles.editor} onClick={this.focus}>

@@ -62,6 +62,7 @@ describe("Socket Chat Server",function(){
     const checkMessage = client => {
       client.on('received-message', payload => { 
         expect(payload.msg).equal(message);
+        expect(payload.ChatroomId).equal(1);
         messages++
       });
     }  
@@ -90,7 +91,7 @@ describe("Socket Chat Server",function(){
           socket3.emit('join-rooms', channels.slice(1))
           
           //send out messages to specific rooms
-          socket1.emit('message', {room: channels[0], msg: message, userId: 1, username: "test user", chatroomId: 1})
+          socket1.emit('message', {room: channels[0], msg: message, userId: 1, chatroomId: 1})
 
           //this listener is to make sure that the total amount of messages recieved in the room
           setTimeout(() =>{

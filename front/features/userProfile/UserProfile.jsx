@@ -1,17 +1,23 @@
-//Vanessa
-//one user should be displayed when the username from the users list is clicked
-//profile?
-
 import React from 'react';
+import {Link} from 'react-router';
+import store from '../../store/store';
 
-const UserProfile = React.createClass({ 
-  render() {
+const UserProfile = (props)=> {
     return (
-      <div>
-        {}
-      </div>
-    )
-  }
-});
+      <section className="users_list">
+        <ul>
+        {props.userChannels.users?
+          props.userChannels.users.map((a,key)=>{
+          return <li key={key}>{a.username}{a.bio}</li>})
+          :false}
+        </ul>
+      </section>
 
-export default UserProfile;
+      /*<div>
+        {props.userChannels.}
+      </div>*/
+    );
+}
+
+export default UserProfile; 
+ 
