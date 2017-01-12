@@ -20,7 +20,7 @@ const App = React.createClass({
 
   },
   render() {
-    const {channel, usersList, chat, teamList} = this.props
+    const {channel, usersList, chat, teamList, userProfile, showProfile} = this.props
     return (
       <div className="app">
         {teamList}
@@ -29,7 +29,7 @@ const App = React.createClass({
           <NavBar {...this.props}/>
           <div className="main_view">
             {chat}
-            {usersList}
+            {showProfile ? userProfile : usersList}
           </div>
         </div>
       </div>
