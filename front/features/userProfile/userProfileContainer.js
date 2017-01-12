@@ -2,7 +2,6 @@
 import UserProfile from './UserProfile';
 
 const mapStateToProps = state => {
-	console.log('this is userprofile state', state)
 	return{
 		username: state.userProfile.username,
 		bio: state.userProfile.bio
