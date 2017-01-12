@@ -38,7 +38,7 @@ export default (
     <Route path='/' component={Landing}>
       <IndexRoute component={LoginContainer}/>
       <Route onEnter={redirectToLogin}>
-        <Route path="/jointeam" component={JoinTeamContainer}/>
+        <Route path="/joinateam" component={JoinTeamContainer}/>       
       </Route>
     </Route>
     <Route onEnter={redirectToLogin}>
@@ -48,9 +48,12 @@ export default (
             channel: ChannelContainer, 
             chat: ChatViewContainer, 
             teamList: TeamListContainer, 
-            usersList: UsersListContainer
+            usersList: UsersListContainer,
+            joinTeam: JoinTeamContainer
           }} 
-        />
+        >
+          <Route path="jointeam" component={JoinTeamContainer}/>
+        </Route>
       </Route>
     </Route>
   </Route>

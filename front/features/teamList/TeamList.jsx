@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router';
 import $ from 'jquery';
 import _ from 'lodash';
 import store from '../../store/store';
-import {getChannel} from '../channel/channelActions'
+import {getChannel} from '../channel/channelActions';
 
 const TeamList = props => {
   const {teams, user} = props;
@@ -37,7 +38,6 @@ const TeamList = props => {
       const viewingChannel = _.find(Chatrooms, chatroom => (
           chatroom.name === viewingTeam.name
       ))
-      console.log(viewingChannel)
       getChannel(viewingTeam.name, viewingChannel.name)
     })
   };
@@ -48,6 +48,10 @@ const TeamList = props => {
         return <div onClick={()=>showTeam(team.id)} className="team_img square" key={index}><p>{team.name[0] + team.name[1]}</p></div>
       }
       )}
+      <Link to={{
+        pathname: '/Slackers/Slackers/jointeam',
+        state: { modal: true, returnTo: props.location.pathname }
+      }}><h1 className="square"> + </h1></Link>
     </section>
   )
 }
