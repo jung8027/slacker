@@ -1,6 +1,7 @@
-
+ 
 const INITIAL_STATE = {
-  user: null
+  username: null,
+  bio: null
 };
 
 export default function(state = INITIAL_STATE, action) {
