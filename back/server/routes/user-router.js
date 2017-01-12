@@ -32,7 +32,8 @@ const createUser = (req,res) => {
 	var body = req.body;
 	User.create({
 		username: body.username,
-		password: body.password
+		password: body.password,
+		bio: body.bio
 	})
 	.then(()=>
 		res.send(body.username+' created!'))
