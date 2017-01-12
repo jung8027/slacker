@@ -1,4 +1,4 @@
-
+ 
 // export const GET_PROFILE = 'GET_PROFILE';
 
 //  export const selectAction = selection => ({
@@ -12,11 +12,11 @@
 
 import $ from 'jquery'
 
-export const USER_PROFILE = 'USER_PROFILE';
+export const GET_PROFILE = 'GET_PROFILE';
 
 export const getOneUser = (user) => (
   {
-    type: USER_PROFILE,
+    type: GET_PROFILE,
     user
   }
 )
