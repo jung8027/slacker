@@ -1,9 +1,12 @@
 @import '_colors';
 
 .team_list {
-  width: 5vw;
+  width: auto;
+  height: auto;
   background-color: $darkPurple;
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-items: flex-start;
+  border-spacing: 30px;
 }

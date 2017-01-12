@@ -1,6 +1,15 @@
 @import '_colors';
 
 .users_list {
-  border: 1px solid green;
-  width: 20vw;
+  	border: 1px solid green;
+  	width: 20vw;
+}
+
+.users_list ul{
+	text-decoration: none;
+	list-style-type: none;
+	color: $lightGray;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }

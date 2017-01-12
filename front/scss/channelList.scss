@@ -1,6 +1,19 @@
 @import '_colors';
 
 .channel_list{
-  background-color: $lightPurple;
-  width: 20vw;
+  	background-color: $lightPurple;
+  	width: 200px;
+  	color: $lightGray;
+}
+
+.channel_list ul{
+	list-style-type: none;
+}
+
+.channel_list li{
+	margin: 15px;
+}
+
+.channel_list li:hover{
+	background-color: $darkPurple;
 }
