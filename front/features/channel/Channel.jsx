@@ -12,14 +12,14 @@ const Channel = (props)=> {
   }
 
   return (
-    <div>
+    <section className="channel_list">
       <ul>
       {props.channels?
         props.channels.map((a,idx)=>
         <li onClick={()=>enterChat(a.name)} key={idx}>{a.name}</li>):
         "Loading..."}
       </ul>
-    </div>
+    </section>
   );
 }
           // onClick={this.enterChat.bind(this, a.username)}
