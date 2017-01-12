@@ -6,6 +6,7 @@ import Landing from './landing/Landing';
 import LoginContainer from './login/loginContainer';
 import TeamListContainer from './teamList/teamListContainer';
 import UsersListContainer from './usersList/usersListContainer';
+import UserProfileContainer from './userProfile/userProfileContainer';
 
 
-export {AppContainer, ChannelContainer, ChatViewContainer, JoinTeamContainer, Landing, LoginContainer, TeamListContainer, UsersListContainer};
+export {AppContainer, ChannelContainer, ChatViewContainer, JoinTeamContainer, Landing, LoginContainer, TeamListContainer, UsersListContainer, UserProfileContainer};
