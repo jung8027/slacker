@@ -10,26 +10,21 @@ body {
 
   .app {
     display: flex;
-    align-items: stretch;
     width: 100vw;
     height: 100vh;
 
     .main {
       display: flex;
       flex-direction: column;
-      width: 75vw;
+      width: auto;
+      height: auto;
 
       .nav {
-        height: 10vh;
         border-bottom: 2px solid $gray;
-        z-index: 1;
-        width: 100%;
       }
 
       .main_view {
         display: flex;
-        align-items:stretch;
-        height: 90vh;
       }
     }
 
@@ -40,7 +35,7 @@ body {
     justify-content: space-between;
     width: 75px;
     height: 50px;
-    border-radius: 15px;
+    border-radius: 12px;
     background: $gray;
   }
 }

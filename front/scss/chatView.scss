@@ -1,30 +1,30 @@
 @import '_colors';
 
 .chat_view {
-  width: 55vw;
+  margin: 5px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  max-height: 100vh;
+  overflow-y:auto;
+
+.chat_view ul:last-child {
+  padding-bottom: 50px;
 
   .view {
-    height: 95vh;
+    height: 100vh;
   }
 
   .chat_bar {
-    width: 775px;
-    height: 50px;
-    display: inline; 
-    max-width: 775px;
-    bottom: 0px;
-    z-index: 1;
     position: absolute;
+    width: 100%;
+    bottom: 0px;
 
     input {
       border: 3px solid $darkGray;
       border-radius: 15px;
-      width: 90%;
-      height: 90%;
+      width: auto;
+      height: auto;
     }
   }
+}
 }

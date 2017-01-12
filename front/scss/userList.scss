@@ -2,14 +2,20 @@
 
 .users_list {
   	border: 1px solid green;
-  	width: 20vw;
+  	width: 100%;
 }
 
 .users_list ul{
 	text-decoration: none;
 	list-style-type: none;
-	color: $lightGray;
+	color: $darkGray;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+}
+
+.users_list li{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 1em;
 }

@@ -25,13 +25,13 @@ const App = React.createClass({
       <div className="app">
         {teamList}
           {channel}
-        <div className="main">
+        <section className="main">
           <NavBar {...this.props}/>
           <div className="main_view">
             {chat}
             {showProfile ? userProfile : usersList}
           </div>
-        </div>
+        </section>
       </div>
     )
   }
