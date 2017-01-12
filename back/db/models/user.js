@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {type: DataTypes.STRING, validate: {notEmpty: true}},
     currentTeam: {type:DataTypes.INTEGER},
-    bio: {type:DataTypes.STRING}
+    bio: {type:DataTypes.STRING(2000)}
   }, 
   {
     classMethods: {

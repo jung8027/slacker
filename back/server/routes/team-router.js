@@ -50,6 +50,7 @@ const getTeamInfoBasedOnUser = (req, res) => {
 		{ where: {id: req.params.userId }}
 	)
 	.then(user => {
+		debug(req.params.teamId, req.params.userId)
 		return User.findById(req.params.userId, {
 			attributes: ['id', 'username', 'password', 'currentTeam'],
 			include: [
@@ -63,20 +64,23 @@ const getTeamInfoBasedOnUser = (req, res) => {
 						attributes: []
 					}
 				},
-				{
-					model: Team,
-					where: {
-						id: 1
-					},
-					attributes: ['name', 'id'],
-					through: {
-						attributes: []
-					}
-				}
+				// {
+				// 	model: Team,
+				// 	where: {
+				// 		id: req.params.teamId
+				// 	},
+				// 	attributes: ['name', 'id'],
+				// 	through: {
+				// 		attributes: []
+				// 	}
+				// }
 			]
 		})
 	})
-	.then(userInfo => res.send(userInfo))
+	.then(userInfo => {
+		debug(userInfo)
+		res.send(userInfo)
+	})
 	.catch(err => res.send(err))
 }
 
