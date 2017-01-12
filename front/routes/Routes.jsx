@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery'
 import {Route, IndexRoute} from 'react-router';
-import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UsersListContainer} from '../features';
+import {AppContainer, ChannelContainer, ChatViewContainer, Landing, LoginContainer,JoinTeamContainer, TeamListContainer, UsersListContainer, UserProfileContainer} from '../features';
 import auth from './auth.js';
 import store from '../store/store';
 
@@ -15,23 +15,23 @@ const redirectToLogin = (nextState, replace) => {
 
 
 const getChannelInfo = (nextState, replace) => {
-  const {team, channel} = nextState.params
+  const {teamname, channelname} = nextState.params
   $.ajax({
-    url: `/api/chatroom/${team}/${channel}`,
+    url: `/api/chatroom/${teamname}/${channelname}`,
     type: 'GET'
   })
   .done(channelData => {
     store.dispatch({
       type: 'CHANNEL_INFO',
       channel: {
-        id: channelData.id, 
+        id: channelData.id,
         name:channelData.name
       },
       users: channelData.Users,
       messages: channelData.Messages
     })
   })
-}
+} 
 
 export default (
   <Route>
@@ -49,11 +49,10 @@ export default (
             chat: ChatViewContainer, 
             teamList: TeamListContainer, 
             usersList: UsersListContainer,
+            userProfile: UserProfileContainer,
             joinTeam: JoinTeamContainer
           }} 
-        >
-          <Route path="jointeam" component={JoinTeamContainer}/>
-        </Route>
+        />
       </Route>
     </Route>
   </Route>

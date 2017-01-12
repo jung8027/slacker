@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import auth from '../../routes/auth'
 import {socket} from '../../socket'
+import Signup from '../signup/Signup'
 
 const Login = React.createClass({
   getInitialState() {
@@ -31,35 +32,10 @@ const Login = React.createClass({
         Password:
         <input onChange={this.handleChange.bind(this, 'password')} value={this.state.password} type="password"/>
         <button onClick={this.submitLoginInfo}>Submit</button>
+        <Signup />
       </div>
     )
   }
 });
-
-// Redux version
-// const Login = props => {
-//   const {input, inputAction} = props;
-//   const handleChange = (event) => {
-//     inputAction(event.target.value)
-//   };
-
-//   const submitLoginInfo = () => {
-//    filler ajax - need to send to a login route api
-//     $.ajax({  })
-//   };
-
-//   return (
-//      <div>
-//        Username:
-//        <input onChange={handleChange.bind()} type="text"/>
-//        Password:
-//        <input onChange={handleChange} type="text"/>
-//        <button onClick={submitLoginInfo}>Submit</button>
-//      </div>
-//   )
-
-// }
-
-
 
 export default Login;

@@ -36,13 +36,12 @@ const App = React.createClass({
     }
   },
   render() {
-    const {channel, usersList, chat, teamList, location, joinTeam} = this.props
+    const {channel, usersList, chat, teamList, location, joinTeam, userProfile, showProfile} = this.props
     const isModal = (
       location.state &&
       location.state.modal &&
       this.previousChildren
     )
-    console.log("isModal",isModal)
     return (
       <div className="app">
         {teamList}
@@ -51,7 +50,7 @@ const App = React.createClass({
           <NavBar {...this.props}/>
           <div className="main_view">
             {chat}
-            {usersList}
+            {showProfile ? userProfile : usersList}
           </div>
         </div>
         <div>

@@ -32,7 +32,8 @@ const createUser = (req,res) => {
 	var body = req.body;
 	User.create({
 		username: body.username,
-		password: body.password
+		password: body.password,
+		bio: body.bio
 	})
 	.then(()=>
 		res.send(body.username+' created!'))
@@ -55,6 +56,15 @@ const deleteUser = (req,res)=> (
 )
 .then((userInfo)=>res.send(userInfo+' deleted!'))
 
+const getProfile = (req, res) => (
+	User.findOne({
+		where: {id: req.params.userid},
+		attributes: ['id','username','bio']
+	})
+).then((userInfo)=>
+	res.send(userInfo)
+)
+
 //ROUTES//
 router.route('/')
 	.get(getAllUsers)
@@ -63,5 +73,9 @@ router.route('/')
 router.route('/:username')
 	.get(getOneUser)
 	.delete(deleteUser)
+
+router.route('/userprofile/:userid')
+	.get(getProfile)
+
 
 module.exports = router;
