@@ -45,7 +45,7 @@ const App = React.createClass({
     return (
       <div className="app">
         {teamList}
-        <section className="channel_list">{channel}</section>
+          {channel}
         <div className="main">
           <NavBar {...this.props}/>
           <div className="main_view">
