@@ -1,7 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
 import auth from '../../routes/auth'
-import {socket} from '../../socket'
 
 const Signup = React.createClass({
   getInitialState() {
@@ -12,7 +11,6 @@ const Signup = React.createClass({
     (this.state.password != this.state.repassword) ?
       this.setState({errormessage: 'Passwords does not match. Please re-enter password'})
     :
-    {
       $.ajax({
         url: '/api/user',
         dataType: 'json',
@@ -30,7 +28,6 @@ const Signup = React.createClass({
       : this.props.router.replace('/')
       
       })})
-    }
   },
   handleChange(eventType, event) {
     this.setState({[eventType]: event.target.value});
@@ -47,7 +44,7 @@ const Signup = React.createClass({
         Password:
         <input onChange={this.handleChange.bind(this, 'password')} value={this.state.password} type="password"/>
         Re-enter Password:
-        <input onChange={this.handleChange.bind(this, 'repassword')} value={this.state.password} type="password"/>
+        <input onChange={this.handleChange.bind(this, 'repassword')} value={this.state.repassword} type="password"/>
       <br/>
         Enter personal bio:
         <textarea placeholder="Tell us about yourself here..." onChange={this.handleChange.bind(this, 'bio')}/>
