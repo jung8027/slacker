@@ -1,34 +1,48 @@
 @import '_colors';
 
 .chat_view {
-  margin: 5px;
   width: 100%;
-  height: 100vh;
+  height: auto;
   overflow-y:auto;
+  padding: 5px;
+  display: inline-block;
+}
 
-// .chat_view li {
-//   display: flex;
-//   flex-direction: column-reverse;
-// }
+.message {
+  border: 1px black;
+}
+
+.message p{
+  font-size: 1.1em;
+}
+
+.input-box{
+  border-color: black;
+  border-radius: 5px;
+  width: 500px;
+  height: 25px;
+}
+
 
 .chat_view ul:last-child {
   padding-bottom: 25px;
 
   .view {
     height: 100vh;
+    border: 1px solid black;
   }
 
   .chat_bar {
     position: absolute;
-    width: 100%;
+    width: 100vh;
     bottom: 0px;
+    transform: scale(1,-1);
 
-    input {
+    .chat_bar input {
       border: 3px solid $darkGray;
       border-radius: 15px;
       width: auto;
       height: auto;
     }
   }
-}
 }
