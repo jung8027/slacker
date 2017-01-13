@@ -21,13 +21,6 @@ const Signup = React.createClass({
           bio: this.state.bio
         }
       })
-      .then(()=> {auth.login(this.state.username, this.state.password, (loggedIn, teamName) => {
-      console.log('loggedin?', teamName);
-      
-      (loggedIn) ? this.props.router.push(`/${teamName}/${teamName}`)
-      : this.props.router.replace('/')
-      
-      })})
   },
   handleChange(eventType, event) {
     this.setState({[eventType]: event.target.value});
