@@ -4,11 +4,13 @@ import _ from 'lodash';
 import $ from 'jquery';
 
 const JoinTeam = props => {
-  const addTeamToUser = teamId => {
+  const addTeamToUser = teamName => {
     $.ajax({
       url: `/api/user/${props.user.username}`,
       type: 'PUT',
-      data: teamId
+      data: {
+        teamName: teamName
+      }
     })
     .done(userInfo => {
       localStorage.userInfo = JSON.stringify(userInfo)
@@ -18,7 +20,7 @@ const JoinTeam = props => {
   return (
     <div>
       {props.allTeams && _.map(props.allTeams, (team, index) => (
-        <p key={index} onClick={()=>addTeamToUser(team.id)}>{team.name}</p>
+        <p key={index} onClick={()=>addTeamToUser(team.name)}>{team.name}</p>
       ))}
     </div>
   )

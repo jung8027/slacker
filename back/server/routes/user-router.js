@@ -70,7 +70,7 @@ const updateCurrentTeam =(req,res)=> {
 
 	//Need to acquire teamId and store it.
   Team.findOne({
-		where: {name: req.body.currentTeam}
+		where: {name: req.body.teamName}
  	})
   .then((teamInfo)=>{
   	newTeam = teamInfo;
@@ -78,7 +78,7 @@ const updateCurrentTeam =(req,res)=> {
 
 	//Need to aquire chatroomId and store it.
 	Chatroom.findOne({
-		where: {name: req.body.currentTeam}
+		where: {name: req.body.teamName}
 	})
 	.then((chatroomInfo)=>{
 		newChatroom = chatroomInfo;
@@ -89,6 +89,8 @@ const updateCurrentTeam =(req,res)=> {
 		where: {username: req.params.username}
 	})
 	.then((user) => {
+		console.log('newTeam', newTeam);
+		console.log('newChatroom', newChatroom)
 		//Promise.all does all the promises requests at once in an array.
 		Promise.all([
 			user.addTeams([newTeam.dataValues.id]), 
