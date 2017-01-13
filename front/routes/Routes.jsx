@@ -43,7 +43,7 @@ export default (
       <Route onEnter={getChannelInfo} component={AppContainer}>
         <Route path="/:team/:channel" 
           components={{
-            channel: ChannelContainer, 
+            channelList: ChannelContainer, 
             chat: ChatViewContainer, 
             teamList: TeamListContainer, 
             usersList: UsersListContainer,

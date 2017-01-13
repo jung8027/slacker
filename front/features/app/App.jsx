@@ -36,7 +36,7 @@ const App = React.createClass({
     }
   },
   render() {
-    const {channel, usersList, chat, teamList, location, joinTeam, userProfile, showProfile} = this.props
+    const {channelList, usersList, chat, teamList, location, joinTeam, userProfile, showProfile} = this.props
     const isModal = (
       location.state &&
       location.state.modal &&
@@ -45,7 +45,7 @@ const App = React.createClass({
     return (
       <div className="app">
         {teamList}
-          {channel}
+          {channelList}
         <div className="main">
           <NavBar {...this.props}/>
           <div className="main_view">
