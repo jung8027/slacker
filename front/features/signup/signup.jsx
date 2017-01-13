@@ -1,6 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
-import auth from '../../routes/auth'
+import auth from '../../routes/auth';
+import Modal from '../app/Modal';
+import {ALL_TEAMS, showAllTeams} from '../app/appActions';
+import store from '../../store/store';
+import {withRouter} from 'react-router';
 
 const Signup = React.createClass({
   getInitialState() {
@@ -21,13 +25,16 @@ const Signup = React.createClass({
           bio: this.state.bio
         }
       })
-      .then(()=> {auth.login(this.state.username, this.state.password, (loggedIn, teamName) => {
-      console.log('loggedin?', teamName);
-      
-      (loggedIn) ? this.props.router.push(`/${teamName}/${teamName}`)
-      : this.props.router.replace('/')
-      
-      })})
+      .done((data)=> {
+        if(data.user) {
+          // send all teams to the store and take user to the next page
+          store.dispatch(showAllTeams(data.allTeams, data.user))
+          localStorage.userInfo = JSON.stringify(data.user)
+          this.props.router.push(`/jointeam`)
+        } else {
+          this.props.router.replace('/')
+        }
+      })
   },
   handleChange(eventType, event) {
     this.setState({[eventType]: event.target.value});
@@ -54,4 +61,4 @@ const Signup = React.createClass({
   }
 });
 
-export default Signup;
+export default withRouter(Signup);

@@ -42,6 +42,18 @@ const TeamList = props => {
     })
   };
 
+  const getTeams = () => {
+    $.ajax({
+      url: '/api/team',
+      type: 'GET'
+    })
+    .done(teams => {
+      console.log(teams)
+      //get all teams for the join team list
+      props.updateTeams(teams)
+    })
+  };
+
   return (
     <section className="team_list">
       {teams && teams.map((team,index) =>{
@@ -49,9 +61,11 @@ const TeamList = props => {
       }
       )}
       <Link to={{
-        pathname: '/Slackers/Slackers/jointeam',
+        pathname: `/${props.params.team}/${props.params.channel}`,
         state: { modal: true, returnTo: props.location.pathname }
-      }}><h1 className="square"> + </h1></Link>
+      }} onClick={getTeams}>
+        <h1 className="square"> + </h1>
+      </Link>
     </section>
   )
 }

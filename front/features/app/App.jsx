@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import store from '../../store/store';
 import {socket} from '../../socket'
 import NavBar from './NavBar';
-import Modal from './Modal'
+import Modal from './Modal';
 
 
 const App = React.createClass({
