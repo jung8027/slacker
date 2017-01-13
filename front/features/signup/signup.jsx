@@ -41,21 +41,27 @@ const Signup = React.createClass({
   },
   render() {
     return (
-      <div>
-      SIGN-UP
+      <div className='signin'>
+        <p className='signinerror'>{this.state.errormessage}</p>
+        SIGN-UP
       <br/>
         Username:
+      <br/>
         <input onChange={this.handleChange.bind(this, 'username')} value={this.state.username} type="text"/>
       <br/>
-        <p>{this.state.errormessage}</p>
         Password:
+      <br/>
         <input onChange={this.handleChange.bind(this, 'password')} value={this.state.password} type="password"/>
+      <br/>
         Re-enter Password:
+      <br/>
         <input onChange={this.handleChange.bind(this, 'repassword')} value={this.state.repassword} type="password"/>
       <br/>
         Enter personal bio:
+      <br/>
         <textarea placeholder="Tell us about yourself here..." onChange={this.handleChange.bind(this, 'bio')}/>
-        <button onClick={this.submitLoginInfo}>Submit</button>
+      <br/>
+        <button className='signinbutton' onClick={this.submitLoginInfo}>Submit</button>
       </div>
     )
   }

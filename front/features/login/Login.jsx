@@ -24,16 +24,22 @@ const Login = React.createClass({
   },
   render() {
     return (
-      <div>
-      LOG-IN
-      <br/>
-        Username:
-        <input onChange={this.handleChange.bind(this, 'username')} value={this.state.username} type="text"/>
-        Password:
-        <input onChange={this.handleChange.bind(this, 'password')} value={this.state.password} type="password"/>
-        <button onClick={this.submitLoginInfo}>Submit</button>
+        <div className='loginpage'>
+        <div className='login' >
+          LOG-IN
+        <br/>
+          Username:
+        <br/>
+          <input onChange={this.handleChange.bind(this, 'username')} value={this.state.username} type="text"/>
+        <br/>
+          Password:
+        <br/>
+          <input onChange={this.handleChange.bind(this, 'password')} value={this.state.password} type="password"/>
+        <br/>
+          <button className='loginbutton' onClick={this.submitLoginInfo}>Submit</button>
+        </div>
         <Signup />
-      </div>
+        </div>
     )
   }
 });
