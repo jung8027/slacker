@@ -46,13 +46,13 @@ const App = React.createClass({
       <div className="app">
         {teamList}
           {channel}
-        <section className="main">
+        <div className="main">
           <NavBar {...this.props}/>
           <div className="main_view">
             {chat}
             {showProfile ? userProfile : usersList}
           </div>
-        </section>
+
         </div>
         <div>
           {isModal && (
@@ -61,6 +61,7 @@ const App = React.createClass({
             </Modal>
           )}
         </div>
+      </div>
     )
   }
 });

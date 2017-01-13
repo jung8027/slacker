@@ -5,6 +5,7 @@ import Message from './Message'
 import {socket} from '../../socket';
 
 const ChatView = React.createClass({
+
   componentDidMount(){
 
     socket.on("received-message", message => {

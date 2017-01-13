@@ -10,21 +10,27 @@ body {
 
   .app {
     display: flex;
+    align-items: stretch;
     width: 100vw;
     height: 100vh;
 
     .main {
       display: flex;
       flex-direction: column;
-      width: auto;
+      width: 1200px;
       height: auto;
 
       .nav {
+        height: 5vh;
         border-bottom: 2px solid $gray;
+        z-index: 1;
+        width: auto;
       }
 
       .main_view {
         display: flex;
+        align-items:stretch;
+        height: auto;
       }
     }
 
