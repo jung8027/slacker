@@ -6,8 +6,14 @@
   height: 100vh;
   overflow-y:auto;
 
+.chat_view ul{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .chat_view ul:last-child {
   padding-bottom: 25px;
+}
 
   .view {
     height: 100vh;
@@ -25,5 +31,4 @@
       height: auto;
     }
   }
-}
 }

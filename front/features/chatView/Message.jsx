@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-//moment("2014-02-27T10:00:00").format('DD-MMM-YYYY');
+moment(props.msg.createdAt).format('DD-MMM-YYYY');
 
 const Message = props => {
   return (
