@@ -2,6 +2,7 @@ import $ from 'jquery'
 import store from '../../store/store';
 // import getChannelInfo from '../routes/Routes'
 
+export const REMOVE_SOCKET_MESSAGES = 'remove_socket_messages'
 
 // actions
 
@@ -18,7 +19,11 @@ export const getChannel = (teamName, channelName) => {
         name:channelData.name
       },
       users: channelData.Users,
-      messages: channelData.Messages
+      messages: channelData.Messages.reverse()
     })
   })
 }
+
+export const removeSocketMessages = () => ({
+  type: REMOVE_SOCKET_MESSAGES
+})

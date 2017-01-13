@@ -1,4 +1,4 @@
-// import {UPDATE_CHANNEL} from './channelActions'
+// import {REMOVE_SOCKET_MESSAGES} from './channelActions'
 
 const INITIAL_STATE = 
 {users: null, channel: null, messages:null};
@@ -11,6 +11,7 @@ export default function(state = INITIAL_STATE, action) {
       output.users = action.users;
       output.messages = action.messages;
       return output
+
     default: 
     // 	return 
       return state

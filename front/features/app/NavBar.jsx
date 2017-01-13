@@ -4,7 +4,8 @@ import auth from '../../routes/auth';
 
 const NavBar = props => {
   return (
-    <div className="nav">NavBar
+    <div className="nav">
+
       <Link to='/'><button onClick={()=>auth.logout()}>Log Out</button></Link>
     </div>
   )

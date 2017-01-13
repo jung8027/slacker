@@ -3,12 +3,15 @@ import React from 'react';
 import store from '../../store/store';
 import {getChannel} from './channelActions';
 
-
 const Channel = (props)=> {
 
   const enterChat=(channelname)=>{
+    console.log(props)
     props.router.replace(`/${props.params.team}/${channelname}`)
+
+    //send out ajax request to get channel messages
     getChannel(props.params.team,channelname)
+    props.removeSocketMessages()
   }
 
   return (
