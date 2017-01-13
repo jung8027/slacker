@@ -7,11 +7,13 @@ export const REMOVE_SOCKET_MESSAGES = 'remove_socket_messages'
 // actions
 
 export const getChannel = (teamName, channelName) => {
+  console.log(teamName, channelName)
   $.ajax({
     url: `/api/chatroom/${teamName}/${channelName}`,
     type: 'GET'
   })
   .done(channelData => {
+    console.log(channelData)
     store.dispatch({
       type: 'CHANNEL_INFO',
       channel: {

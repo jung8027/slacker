@@ -4,6 +4,7 @@ import store from '../../store/store';
 import {socket} from '../../socket'
 import NavBar from './NavBar';
 import Modal from './Modal';
+import {getChannel} from '../channel/channelActions'
 
 
 const App = React.createClass({
@@ -16,6 +17,9 @@ const App = React.createClass({
       
       //join socket to chat rooms based off the infomation we receive in the database
       socket.emit('join-rooms', _.map(userInfo.chatrooms, room => (room.name)))
+
+      //get channel infomation
+      getChannel(this.props.params.team, this.props.params.channel)
     }
   },
   componentWillReceiveProps(nextProps) {
@@ -36,7 +40,8 @@ const App = React.createClass({
     }
   },
   render() {
-    const {channelList, usersList, chat, teamList, location, joinTeam, userProfile, showProfile} = this.props
+    const {channelList, usersList, chat, teamList, location, joinTeam, userProfile, showProfile, channelMembers, channel} = this.props
+    console.log(channel, channel)
     const isModal = (
       location.state &&
       location.state.modal &&
@@ -47,7 +52,7 @@ const App = React.createClass({
         {teamList}
           {channelList}
         <div className="main">
-          <NavBar {...this.props}/>
+          <NavBar channelMembers={channelMembers} channel={channel}/>
           <div className="main_view">
             {chat}
             {showProfile ? userProfile : usersList}

@@ -1,18 +1,37 @@
 @import '_colors';
 
 .team_list {
-  width: auto;
-  height: auto;
+  width: 6vw;
   background-color: $darkPurple;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-items: flex-start;
+  align-items:center;
+  
+}
+
+.team_img {
+  margin-bottom: 2vh;
 }
 
 .team_list p {
 	display: flex;
 	justify-content: center;
-	font-family: helvetica;
 	font-weight: bold;
+  color: $lightGray;
+}
+
+.team_list h1 {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: none;
+  color: $lightGray;
+}
+.team_list a {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  font-weight: bold;
+  text-decoration: none;
+  color: $lightGray;
 }

@@ -19,7 +19,7 @@ const Channel = (props)=> {
       <ul>
       {props.channels?
         props.channels.map((a,idx)=>
-        <li onClick={()=>enterChat(a.name)} key={idx}>{a.name}</li>):
+        <li onClick={()=>enterChat(a.name)} key={idx}>{a.name.toLowerCase()}</li>):
         "Loading..."}
       </ul>
     </section>

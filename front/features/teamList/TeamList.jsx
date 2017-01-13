@@ -57,7 +57,7 @@ const TeamList = props => {
   return (
     <section className="team_list">
       {teams && teams.map((team,index) =>{
-        return <div onClick={()=>showTeam(team.id)} className="team_img square" key={index}><p>{team.name}</p></div>
+        return <div onClick={()=>showTeam(team.id)} className="team_img square" key={index}><p>{team.name[0].toUpperCase() + team.name[1].toUpperCase() }</p></div>
       }
       )}
       <Link to={{

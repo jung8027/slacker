@@ -6,11 +6,16 @@ import moment from 'moment';
 
 const Message = props => {
   return (
-    <div className="message">
-      <h3>{props.msg.User.username}</h3>
-      <h5>{moment(props.msg.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h5>
-      <p>{props.msg.msg}</p>
-    </div>
+    <article className="message">
+      <div className="square photo"><img src='/slack.png'/></div>
+      <div className="message_inner">
+        <div className="username_date">
+          <h3>{props.msg.User.username}</h3>
+          <h5>{moment(props.msg.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h5>
+        </div>
+        <p>{props.msg.msg}</p>
+      </div>
+    </article>
   )
 }
 

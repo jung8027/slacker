@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => (
 const mapStateToProps = state => ({
 	showProfile: state.userProfile.showProfile, 
   channel: state.channel.channel,
-  userInfo: state.channel.user
+  channelMembers: state.channel.users,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

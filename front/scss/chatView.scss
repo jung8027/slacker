@@ -9,11 +9,39 @@
 }
 
 .message {
-  border: 1px black;
+  display: flex;
+  margin-bottom: 3vh;
+
+  .photo {
+    overflow: hidden;
+  }
+}
+
+.message_inner{
+  display: flex;
+  flex-direction: column;
+  margin-left: 2.5vw;
+}
+
+.username_date {
+  display: flex;
+  align-items: flex-end;
+
+  h3{
+    margin: 0;
+    font-weight: 900;
+  }
+
+  h5{
+    margin: 0;
+    font-weight: 300;
+  }
 }
 
 .message p{
   font-size: 1.1em;
+  margin: 0;
+  padding-top: 1vh;
 }
 
 .input-box{
