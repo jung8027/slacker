@@ -1,7 +1,7 @@
-import {USER_LOGIN, AUTH_USER} from './appActions';
+import {USER_LOGIN, AUTH_USER, ALL_TEAMS, TEAMS} from './appActions';
 
 const INITIAL_STATE = {
-  user: [], chatrooms: null, userTeams: null,
+  user: null, chatrooms: null, userTeams: null, allTeams: null
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -12,6 +12,10 @@ export default function(state = INITIAL_STATE, action) {
       output.chatrooms = action.chatrooms;
       output.userTeams = action.userTeams;
       return output
+    case ALL_TEAMS: 
+      return Object.assign({}, state, {allTeams: action.allTeams, user: action.user})
+    case TEAMS: 
+      return Object.assign({}, state, {allTeams: action.allTeams})
     default: 
       return state
   }
