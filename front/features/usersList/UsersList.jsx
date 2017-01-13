@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 import store from '../../store/store';
 import $ from 'jquery';
 import UserProfile from '../userProfile/UserProfile.jsx';
-// import {selectProfile} from '../userProfile/userProfileActions';
 
 const UserList = (props)=> {
   const getProfile = (userid) => {
@@ -14,15 +13,6 @@ const UserList = (props)=> {
     }).done(data => store.dispatch({type: 'GET_PROFILE', bio: data.bio, username: data.username}))
   }
     return (
-      /*<section className="users_list">
-        <ul>
-        {props.userChannels.users?
-          props.userChannels.users.map((a,key)=>{
-          return <li key={key}>{a.username}</li>})
-          :false}
-        </ul>
-      </section>
-      */
       <section className="users_list">
         <ul>
         {props.userChannels.users?
