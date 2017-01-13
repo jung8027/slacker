@@ -7,24 +7,30 @@
 body {
   margin: 0;
   padding: 0;
-
+}
   .app {
     display: flex;
     align-items: stretch;
     width: 100vw;
     height: 100vh;
-
+  }
     .main {
       display: flex;
       flex-direction: column;
       width: 100vw;
       height: auto;
+    }
 
       .nav {
-        height: 5vh;
-        border-bottom: 2px solid $gray;
-        z-index: 1;
-        width: auto;
+        border: 1px solid $gray;
+        display: inline-block;
+        font-size: 1.5em;
+        font-weight: bolder;
+        padding: 5px;
+        padding-left: 5px;
+      }
+      .nav button {
+        margin-bottom: 10px;
       }
 
       .main_view {
@@ -32,9 +38,7 @@ body {
         align-items:stretch;
         height: auto;
       }
-    }
 
-  }
   .square {
     display: flex;
     flex-direction: column;
@@ -44,4 +48,3 @@ body {
     border-radius: 12px;
     background: $gray;
   }
-}
