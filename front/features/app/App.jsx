@@ -52,6 +52,7 @@ const App = React.createClass({
             {chat}
             {showProfile ? userProfile : usersList}
           </div>
+
         </div>
         <div>
           {isModal && (
