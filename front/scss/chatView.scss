@@ -4,11 +4,11 @@
   width: 55vw;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   max-height: 100vh;
 
   .view {
     height: 95vh;
+    overflow-y: auto;
   }
 
   .chat_bar {

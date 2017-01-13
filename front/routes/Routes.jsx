@@ -37,9 +37,7 @@ export default (
   <Route>
     <Route path='/' component={Landing}>
       <IndexRoute component={LoginContainer}/>
-      <Route onEnter={redirectToLogin}>
-        <Route path="/joinateam" component={JoinTeamContainer}/>       
-      </Route>
+      <Route path="/jointeam" component={JoinTeamContainer}/>       
     </Route>
     <Route onEnter={redirectToLogin}>
       <Route onEnter={getChannelInfo} component={AppContainer}>

@@ -15,9 +15,12 @@ const createTeam = (req,res) => {
 
 //displays all chats on sidebar of active Chatrooms to user
 const getAllTeams = (req,res) => (
-	Team.findAll()
-	.then((Chatrooms)=>
-		res.send(Chatrooms))
+	Team.findAll({
+		attributes: ['name', 'id']
+	})
+	.then( teams =>
+		res.send(teams)
+	)
 );
 
 

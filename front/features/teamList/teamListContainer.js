@@ -2,11 +2,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router';
 import TeamList from './TeamList';
-import {updateUserInfo} from '../app/appActions';
+import {updateUserInfo, updateTeams} from '../app/appActions';
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
    updateUserInfo,
+   updateTeams
   }, dispatch)
 )
 

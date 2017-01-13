@@ -3,6 +3,7 @@ const User = require('../../db/models').User;
 const Message = require('../../db/models').Message;
 const Chatroom = require('../../db/models').Chatroom;
 const Team = require('../../db/models').Team;
+const debug = require('debug')('SERVER_INDEX');
 
 //FUNCTIONS//
 const getAllUsers = (req,res) => (
@@ -29,24 +30,31 @@ const getOneUser = (req,res) => (
 )
 
 const createUser = (req,res) => {
-	var body = req.body;
+  debug(req.body)
+	const { username, password, bio} = req.body;
+  let user = null;
 	User.create({
-		username: body.username,
-		password: body.password,
-		bio: body.bio
+		username,
+		password,
+		bio
 	})
-	.then(()=>
-		res.send(body.username+' created!'))
+	.then((newUser)=> {
+    user = newUser
+    return Team.findAll()
+  })
+  .then((allTeams) => {
+    res.send({user, allTeams})
+  })
 	.catch((err) =>{
-            // respond with validation errors
-            res.status(422).send(err.errors[0].message);
-        })
+    // respond with validation errors
+    res.status(422).send(err.errors[0].message);
+  })
   .catch((err)=> {
-      // every other error
-      res.status(400).send({
-          message: err.message
-      });
-    })
+    // every other error
+    res.status(400).send({
+        message: err.message
+    });
+  })
 }
 
 const deleteUser = (req,res)=> (
