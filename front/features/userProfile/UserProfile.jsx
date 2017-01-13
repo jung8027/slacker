@@ -9,7 +9,7 @@ const UserProfile = (props)=> {
     return (
     	<div>
 		     <section className="users_list">
-		      	<h1>{props.username}</h1>
+		      	<p>{props.username}</p>
 		      	<p>{props.bio}</p>
 		      	<button onClick={()=>getList()}>Back to list</button>
 		     </section>

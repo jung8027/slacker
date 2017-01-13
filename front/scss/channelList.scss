@@ -2,16 +2,19 @@
 
 .channel_list{
   	background-color: $lightPurple;
-  	width: 200px;
+  	display: flex;
+  	flex-direction: column;
   	color: $lightGray;
 }
 
 .channel_list ul{
 	list-style-type: none;
+	width: auto;
 }
 
 .channel_list li{
-	margin: 15px;
+	padding-right: 25px;
+  	margin: 5px;
 }
 
 .channel_list li:hover{

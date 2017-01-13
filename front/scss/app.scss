@@ -17,19 +17,20 @@ body {
     .main {
       display: flex;
       flex-direction: column;
-      width: 75vw;
+      width: 1200px;
+      height: auto;
 
       .nav {
-        height: 10vh;
+        height: 5vh;
         border-bottom: 2px solid $gray;
         z-index: 1;
-        width: 100%;
+        width: auto;
       }
 
       .main_view {
         display: flex;
         align-items:stretch;
-        height: 90vh;
+        height: auto;
       }
     }
 
@@ -40,7 +41,7 @@ body {
     justify-content: space-between;
     width: 75px;
     height: 50px;
-    border-radius: 15px;
+    border-radius: 12px;
     background: $gray;
   }
 }
