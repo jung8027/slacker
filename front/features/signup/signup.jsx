@@ -35,6 +35,7 @@ const Signup = React.createClass({
           this.props.router.replace('/')
         }
       })
+      .catch((err)=>this.setState({errormessage: err.responseText}))
   },
   handleChange(eventType, event) {
     this.setState({[eventType]: event.target.value});
@@ -42,7 +43,7 @@ const Signup = React.createClass({
   render() {
     return (
       <div className='signin'>
-        <p className='signinerror'>{this.state.errormessage}</p>
+        <p className='errormsg'>{this.state.errormessage}</p>
         SIGN-UP
       <br/>
         Username:
