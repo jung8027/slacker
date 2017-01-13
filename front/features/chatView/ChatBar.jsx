@@ -55,7 +55,7 @@ export default class ChatBar extends React.Component{
   render() {
     return (
       <div className="chat_bar">
-        <input 
+        <input className='input-box'
           type='text'
           onKeyUp={this.sendMessage.bind(this)}
           onChange={this.handleChange.bind(this)}
